@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f2f46930.css",
+    "main.js": "/static/js/main.7031a85c.js",
+    "static/js/453.2fb788c9.chunk.js": "/static/js/453.2fb788c9.chunk.js",
+    "static/media/backgrounds.png": "/static/media/backgrounds.8c0de39fcc36cdc1b5cb.png",
+    "static/media/img1.png": "/static/media/img1.ddc626e70834ac457a87.png",
+    "static/media/imge1.png": "/static/media/imge1.8c697d282bcc0a70933a.png",
+    "static/media/img2.png": "/static/media/img2.6eabe16dd86d3a6e0b8b.png",
+    "static/media/img3.png": "/static/media/img3.ea70b50eacfd12d378b4.png",
+    "static/media/imge2.png": "/static/media/imge2.6cb632e7ca3563d2f9c3.png",
+    "static/media/warehouse.png": "/static/media/warehouse.a481dbcccd3eb710928e.png",
+    "static/media/imge3.png": "/static/media/imge3.31878caaf2845af5d300.png",
+    "static/media/villa.png": "/static/media/villa.056d9bea07c5ddc1869e.png",
+    "static/media/land.png": "/static/media/land.fc57e676ad13f856c263.png",
+    "static/media/building.png": "/static/media/building.1f22fd53f8e4e652a036.png",
+    "static/media/apartment.png": "/static/media/apartment.92cc2f41d68e363099e7.png",
+    "static/media/amenestate.png": "/static/media/amenestate.674d0873fdf6d8980140.png",
+    "static/media/ojodu.png": "/static/media/ojodu.8a1dd449d9ba4a1df074.png",
+    "static/media/amen II.png": "/static/media/amen II.89844656b5f7b481af9b.png",
+    "static/media/solomade.png": "/static/media/solomade.5af2c32a6251048a7a3d.png",
+    "static/media/lekkiphase2.png": "/static/media/lekkiphase2.8b33be254a20f2ff4f44.png",
+    "static/media/obasanjo.png": "/static/media/obasanjo.6cf042d49180e07be435.png",
+    "static/media/palmgroove.png": "/static/media/palmgroove.8dac3ed4f31139435a9b.png",
+    "static/media/office.png": "/static/media/office.0c4e0e498c4086cf0781.png",
+    "static/media/banana.png": "/static/media/banana.d85248f2eee3bd3c230e.png",
+    "static/media/lipede.png": "/static/media/lipede.0b01f8a61f0a208a1667.png",
+    "static/media/federal.png": "/static/media/federal.81e0f779382fec8756f8.png",
+    "static/media/ibara.png": "/static/media/ibara.81646453cc3626bed095.png",
+    "static/media/adam.png": "/static/media/adam.765e2fe6ff9ebb0e4e38.png",
+    "static/media/kaneth.png": "/static/media/kaneth.98192f97ff4e9f221f58.png",
+    "static/media/next.png": "/static/media/next.d9db50b25925011a7fc0.png",
+    "index.html": "/index.html",
+    "main.f2f46930.css.map": "/static/css/main.f2f46930.css.map",
+    "main.7031a85c.js.map": "/static/js/main.7031a85c.js.map",
+    "453.2fb788c9.chunk.js.map": "/static/js/453.2fb788c9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2f46930.css",
+    "static/js/main.7031a85c.js"
+  ]
+}

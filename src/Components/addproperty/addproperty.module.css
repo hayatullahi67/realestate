@@ -1,0 +1,222 @@
+/* General Form Styles */
+.form {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+  
+ 
+  align-items: center;
+}
+form{
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin: auto;
+  width: 800px !important;
+}
+/* Individual Form Groups */
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.form label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input and Textarea Styling */
+.form input, .form textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #8a8a8a;
+  background-color: #f4f4f4;  /* Light gray background */
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+  border-radius: 4px; /* Slightly round the edges */
+}
+
+/* Focus State for Input and Textarea */
+.form input:focus, .form textarea:focus {
+  border-bottom-color: #0F8CBA; /* Blue border on focus */
+  background-color: #e6f7ff; /* Lighter blue background on focus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on focus */
+}
+
+/* Textarea Specific Styles */
+.form textarea {
+  grid-column: span 8;
+  resize: vertical;
+  height: 150px;
+}
+
+/* Placeholder Styling */
+.form input::placeholder, .form textarea::placeholder {
+  color: #8a8a8a; /* Placeholder text color */
+  font-style: italic;
+}
+
+/* Hover Effect */
+.form input:hover, .form textarea:hover {
+  background-color: #e0e0e0; /* Slightly darker gray on hover */
+}
+
+/* File Input Specific Styles */
+.form input[type='file'] {
+  padding: 0;
+  border-bottom: none;
+  background-color: #fff; /* Ensure it matches the form background */
+}
+
+/* Responsive Grid Layout */
+.form > div:nth-child(odd) {
+  grid-column: span 4;
+}
+
+.form > div:nth-child(even) {
+  grid-column: span 4;
+}
+
+.form > div:last-child {
+  grid-column: span 8;
+}
+
+/* Submit Button Styling */
+.submitbutton button {
+  background-color: #4CAF50; /* Green background */
+  border: none;              /* Remove borders */
+  color: white;              /* White text */
+  padding: 12px 16px;        /* Padding for a better look */
+  text-align: center;        /* Centered text */
+  text-decoration: none;     /* Remove underline */
+  display: inline-block;     /* Get the element to line up nicely */
+  font-size: 16px;           /* Increase font size */
+  margin: 16px 0;            /* Margin for spacing */
+  cursor: pointer;           /* Pointer/hand icon on hover */
+  border-radius: 12px;       /* Rounded corners */
+  width:fit-content;               /* Full width for better responsiveness */
+  align-items: center;
+  
+}
+.submitbutton{
+  display: flex; 
+  justify-content: right;
+}
+
+/* Submit Button Hover Effect */
+.submit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.loadingmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it is on top of other content */
+}
+
+.loadingspinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-modal p {
+  color: white;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.addnew{
+  margin-top: 10px;
+}
+.newimage .addnew {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.deletebutton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.deletebutton:hover {
+  background-color: darkred;
+}
+
+/* Responsive Design Adjustments */
+@media screen and (max-width: 1024px) {
+  .form {
+      grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .form > div:nth-child(odd), form > div:nth-child(even) {
+      grid-column: span 4;
+  }
+
+  .form textarea {
+      grid-column: span 4;
+  }
+
+  .form > div:last-child {
+      grid-column: span 4;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form > div:nth-child(odd), form > div:nth-child(even) {
+      grid-column: span 2;
+  }
+
+  .form textarea {
+      grid-column: span 2;
+  }
+
+  .form > div:last-child {
+      grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+      grid-template-columns: 1fr;
+  }
+
+  .form > div, form textarea, form > div:last-child {
+      grid-column: span 1;
+  }
+}

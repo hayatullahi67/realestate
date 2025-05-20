@@ -1,0 +1,340 @@
+.container{
+    width: 100%;
+    background-image: url('../../Assets/Images/backgrounds.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 596px;
+    flex-shrink: 0;
+}
+.text{
+    width: 90%;
+    margin: auto;
+    padding: 5rem 0;
+}
+.text h2{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+.buyRent{
+    width: 940px;
+    height: 194px;
+    flex-shrink: 0;
+    display: block;
+    align-items: center;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.94);
+    margin: auto;
+}
+.btns{
+    display: inline-flex;
+    justify-content: space-between;
+    gap: 10px;    
+    margin-top: 26px;
+    margin-left: 32px;
+}
+.btns button{
+    display: inline-flex;
+    height: 31px;
+    padding: 6px 10px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: none;
+    background: rgba(15, 140, 186, 0.13);
+    color: #0B0C0C;;
+    font-family: Inter;
+    font-style: normal;
+    font-size: 14px;
+    line-height: normal;
+}
+.btns button:hover{
+    border: 1px solid #062589;
+}
+.region{
+    display: inline-flex;
+    height: 50px;
+    width: 480px;
+    align-items: flex-start;
+    gap: 13.615px 0;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+.regionII{
+    display: inline-flex;
+    height: 47px;
+    width: 432px;
+    align-items: flex-start;
+    gap: 13.615px;
+    border: none;
+    background: #FFF;
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 1;
+}
+.findImg{
+    padding: 11px 11px;
+}
+.property{
+    width: 160px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+.property option{
+    display: inline-flex;
+    padding: 0px 0px 1px 12px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 39px;
+}
+.property option:hover{
+    background: rgba(114, 211, 246, 0.28);
+    color: #0D80AB;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.bnbs{
+    width: 134px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+.price{
+    width: 130px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+.searchSection{
+    gap: 20px;
+    list-style-type: none;
+    display: inline-flex;
+    margin-top: 18px;
+    margin-left: 32px;
+}
+.searchSection img{
+    width: 46px;
+    height: 47px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.checkbox{
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    margin-top: 13px;    
+    margin-left: 32px;
+}
+.lowerSection{
+    display: flex;
+    justify-content: space-between;
+    width: 96.7%;
+    
+}
+.showComm{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    margin-top: 16px;
+    margin-right: 27rem;
+    
+}
+.showMore{
+    color: #0F8CBA;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;    
+    margin-top: 16px;
+    cursor: pointer;
+}
+.showMore:hover{
+    font-weight: 900;
+}
+
+@media screen and (max-width: 1024px){
+    .container{
+        width: 100%;
+        height: 446px;
+    }
+    .text h2{
+        font-size: 35px;
+    }
+    .buyRent{
+        width: 860px;
+        height: 170px;
+    }
+    .btns{
+        margin-top: 15px;
+        margin-left: 22px;
+    }
+    .region{
+        width: 390px;
+        height: 49px;
+    }
+    .findImg{
+        padding: 13px 13px;   
+    }
+    .property{
+        height: 49px;
+    }
+    .price{
+        height: 49px;
+    }
+    .searchSection img{
+        height: 44px;
+    }
+    .showComm{
+        margin-right: 22rem;
+    }
+}
+@media screen and (max-width: 768px){
+    .container{
+        width: 100%;
+        height: 406px;
+    }
+    .buyRent{
+        width: 90%;
+        height: 170px;
+    }
+    .region{
+        width: 285px;
+        height: 49px;
+    }
+    .regionII{
+        width: 280px;
+        padding: 0 20px 0 0;
+    }
+    .property{
+        height: 49px;
+        width: 110px;
+        font-size: 12px;
+    }
+    .price{
+        height: 49px;
+        width: 110px;
+        font-size: 12px;
+    }
+    .checkbox{
+        width: 20px;
+        height: 20px;
+    }
+    .showComm{
+        margin-right: 10rem;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .btns{
+        margin-top: 10px;
+        margin-left: 15px;
+        position: absolute;
+    }
+    .btns button{
+        height: 28px;
+        padding: 2px 4px;
+        font-size: 12px;
+    }
+    .buyRent{
+        width: 98%;
+        
+    }
+    .region{
+        width: 190px;
+        height: 42px;
+    }
+    .regionII{
+        width: 190px;
+        height: 39px;
+        padding: 0 0;
+        font-size: 11px;
+    }
+    .region img{
+        height: 20px;
+        width: 20px;
+    }
+    .searchSection{
+        margin-left: 15px;
+        padding-top: 35px;
+        gap: 6px;
+    }
+    .searchSection img{
+        height: 39px;
+        width: 39px;
+    }
+    .findImg{
+        padding: 10px 10px;   
+    }
+    .property{
+        height: 42px;
+        width: 75px;
+        font-size: 10px;
+    }
+    .price{
+        height: 42px;
+        width: 75px;
+    }
+    .lowerSection span{
+        font-size: 11px;
+    }
+    .checkbox{
+        width: 15px;
+        height: 15px;
+    }
+    .showComm{
+        margin-right: 2.5rem;
+    }
+}

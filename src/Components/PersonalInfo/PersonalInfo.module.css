@@ -1,0 +1,161 @@
+.container{
+    width: 70%;
+    background: #fff;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 10rem;
+    margin-right: 10rem;
+    position: relative;
+}
+.innerContainer{
+    background: #fff;
+    padding: 20px;
+}
+.personal p{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.formsDiv {
+    display: flex;
+    justify-content: space-between;
+}
+.formsDivs {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+.forms{
+    height: 70px;
+    border-radius: 5px;
+    border: 1px solid rgba(15, 15, 15, 0.50);
+    width: 424px;
+    margin-top: 2rem;   
+}
+.divform{
+    display: inline-flex;
+    padding: 23px 29px 21px 30px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 125px;
+    height: 67px;
+    width: 360px;
+    border-color: #fff;
+    border: none;
+    color: #7D7D7D;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.forms img{
+    margin-left: 10px;
+}
+.picbtn{
+    text-align: center;
+}
+.picbtn div{
+    margin-top: 1rem;
+}
+.picbtn button{
+    display: inline-flex;
+    height: 70px;
+    padding: 23px 55px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #0F8CBA;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    width: 290px;
+    margin-top: 9rem;
+    cursor: pointer;
+}
+.profilePic {
+    width: 400px; /* Set the width of the image */
+  height: 400px; /* Set the height of the image (should be the same as width) */
+  border-radius: 50% !important; /* Makes the image circular */
+  object-fit: cover !important; /* Ensures the image fits the container without distortion */
+  
+  overflow: hidden; /** Ensure block display */
+  }
+  .profilePics{
+    width: 100%; /* Set the width of the image */
+    height: 100%;
+  }
+  .fileLabel {
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  }
+
+@media screen and (max-width: 1024px){
+    .container{
+        margin-right: 6rem;
+        margin-top: 2rem;
+    }
+    .forms{
+        height: 55px;
+        width: 334px;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .divform{
+        height: 53px;
+        font-size: 18px;
+        padding: 15px 10px;
+    }
+    .forms img{
+        width: 35px;
+        height: 22px;
+        margin-right: 13px;
+    }
+    .picbtn button{
+        margin-top: 6rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        margin-right: 4.5rem;
+        margin-top: 2rem;
+    }
+    .personal p{
+        font-size: 18px;
+    }
+    .forms{
+        height: 48px;
+        width: 265px;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .divform{
+        height: 46px;
+        font-size: 16px;
+        padding: 15px 10px;
+    }
+    .forms img{
+        width: 35px;
+        height: 22px;
+        margin-right: 13px;
+    }
+    .picbtn button{
+        margin-top: 2rem;
+        padding: 17px 25px;
+        width: 190px;
+        height: 60px;
+    }
+    .picbtn img{
+        height: 120px;
+        width: 120px;
+    }
+}

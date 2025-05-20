@@ -1,0 +1,461 @@
+.container{
+    width: 80%;
+    margin: 0;
+    margin: auto;
+    margin-top: 3rem;
+    margin-right: 5rem;
+}
+.innerContainer{
+    width: 100%;
+}
+.openButton button{
+    display: inline-flex;
+    height: 54px;
+    padding: 15px 183px 15px 183px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 14.668px;
+    border-radius: 5px;
+    background: var(--Red-button, #F13D31);
+    border: none;
+    cursor: pointer;
+}
+
+.openButton button p{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.contactCard{
+    width: 300px;
+    height: 402px;
+    border-radius: 5px;
+    border: 0.5px solid var(--Grey, #7D7D7D);
+    background: #FFF;
+    text-align: center;
+    padding-top: 2rem;
+    position: relative;
+    margin-left: 40.5rem;
+    bottom: 3.4rem;
+}
+.contactCard p{
+    color: var(--Grey, #7D7D7D);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.whatsappButton{
+    display: inline-flex;
+    width: 260px;
+    height: 41px;
+    padding: 10px 78px 10px 72px;
+    align-items: flex-start;
+    gap: 12px;
+    border-radius: 12px;
+    background: #14CC27;
+    border: none;
+    align-items: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.callButton{
+    display: flex;
+    width: 260px;
+    height: 41px;
+    padding: 11px 0px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 6px;
+    border-radius: 12px;
+    background: var(--Grey, #7D7D7D);
+    border: none;
+    align-items: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;  
+    cursor: pointer;  
+    margin: auto;
+}
+.texts{
+    display: flex;
+    padding-top: 1.8rem;
+    margin: auto;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.texts p{
+    color: var(--Grey, #7D7D7D);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+.similiarListing{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: -23rem;
+}
+.similiarListing p{
+    color: var(--Black-colour, #262626);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.imagesDiv1{
+    display: flex;
+    gap: 20px;
+}
+.imagesDiv2{
+    display: flex;
+    gap: 20px;
+    margin-top: -20px;
+}
+.imagesCard{
+    max-width: 100%;
+    height: 288px;
+}
+.banana{
+    width: 300px;
+    height: 196px;
+}
+.amen{
+    width: 300px;
+    height: 196px;
+}
+.ojodu{
+    width: 300px;
+    height: 196px;
+}
+.palmgroove{
+    width: 300px;
+    height: 196px;
+}
+.fav{
+    position: absolute;
+    margin-left: 18px;  
+}
+.next{
+    width: 60px;
+    height: 60px;
+    text-decoration: none;
+    margin-top: 3.3rem;   
+}
+.topImgs{
+    position: absolute;
+    margin-left: 14rem;
+    margin-top: -11rem;
+    text-decoration: none;        
+}
+.topImgs li{
+    list-style-type: none;
+}
+.apartment{
+    width: 300px;
+    height: 28px;
+    background: rgba(16, 15, 15, 0.47);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;    
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    margin-top: -2rem;
+}
+.apartment span{
+    align-items: center;
+}
+.spanTexts{
+    display: grid;
+}
+.spanTexts img{
+    /* justify-content: end; */
+}
+.textOne{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    justify-content: space-between;
+}
+.textTwo{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.textThree{
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.textStar1{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.textStar2{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.textStar3{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.textStar4{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media screen and (max-width: 1024px){
+    .openButton button{
+        height: 54px;
+        padding: 15px 125px 10px 125px;
+    }
+    .openButton button p{
+        font-size: 18px;
+    }
+    .banana{
+        width: 235px;
+        height: 170px;
+    }
+    .amen{
+        width: 235px;
+        height: 170px;
+    }
+    .ojodu{
+        width: 235px;
+        height: 170px;
+    }
+    .palmgroove{
+        width: 235px;
+        height: 170px;
+    }
+    .apartment{
+        width: 235px;
+        height: 23px;
+        margin-top: -1.7rem;
+    }
+    .imagesDiv1{
+        display: flex;
+        gap: 12px;
+    }
+    .imagesDiv2{
+        display: flex;
+        gap: 10px;
+        margin-top: -20px;
+    }
+    .contactCard{
+        width: 210px;
+        height: 352px;  
+        margin-left: 31rem;
+    }
+    .contactCard img{
+        width: 100px;
+    }
+    .topImgs{
+        margin-left: 11rem;
+        margin-top: -10rem;      
+    }
+    .whatsappButton{
+        width: 140px;
+        height: 35px;
+        padding: 10px 25px;
+        font-size: 11px;
+    }
+    .whatsappButton img{
+        width: 15px;
+    }
+    .callButton{
+        width: 140px;
+        height: 35px;
+        padding: 10px 35px;
+    }
+    .callButton img{
+        width: 12px;
+    }
+    .texts p{
+        font-size: 9px;
+    }
+    .similiarListing{
+        width: 100%;
+        height: 100%;
+        margin-top: -20rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .buttonContact{
+        display: block;
+    }
+    .openButton{
+        justify-content: center;
+    }
+    .similiarListing{
+        margin: 2rem 0;  
+    }
+    .contactCard{
+        width: 300px;
+        height: 360px;
+        margin-left: 6rem;
+        margin-top: 6rem;
+    }
+    .banana{
+        width: 375px;
+        height: 210px;
+    }
+    .amen{
+        width: 375px;
+        height: 210px;
+    }
+    .ojodu{
+        width: 375px;
+        height: 210px;
+    }
+    .palmgroove{
+        width: 375px;
+        height: 210px;
+    }
+    .apartment{
+        width: 271px;
+        height: 21px;
+        margin-top: -1.6rem;
+    }
+    .similiarListing p{
+        margin-bottom: 1rem;
+    }
+    .topImgs{
+        margin-left: 13rem;
+        margin-top: -11rem;      
+    }   
+}
+
+@media screen and (max-width: 425px){
+    .container{
+        width: 85%;
+        margin: auto;
+        margin-top: 2rem
+    }
+    .openButton button{
+        height: 54px;
+        padding: 15px 45px 5px 45px;
+    }
+    .openButton button p{
+        font-size: 13px;
+    }
+    .openButton{
+        justify-content: center;
+        text-align: center;
+    }
+    .contactCard{
+        width: 230px;
+        height: 290px;
+        margin-left: 5.5rem;
+        margin-top: 6rem;
+    }
+    .whatsappButton{
+        width: 120px;
+        height: 35px;
+        padding: 5px 5px 5px 15px;
+        margin-top: .5rem;
+        margin-bottom: .1rem;
+    }
+    .callButton{
+        width: 120px;
+        height: 35px;
+        padding: 10px 35px;
+        margin-top: .5rem;
+    }
+    .callButton img{
+        width: 12px;
+    }
+    .texts{
+        padding-top: 1rem;
+    }
+    .imagesDiv{
+        margin: auto;
+    }
+    .imagesDiv1{
+        display: block;
+        margin: auto;
+        justify-content: center;
+    }
+    .imagesDiv2{
+        display: block;
+    }
+    .banana{
+        width: 325px;
+        height: 210px;
+    }
+    .amen{
+        width: 325px;
+        height: 210px;
+    }
+    .ojodu{
+        width: 325px;
+        height: 210px;
+    }
+    .palmgroove{
+        width: 325px;
+        height: 210px;
+    }
+    .textStar{
+        margin-right: 2.2rem;
+    }
+    .apartment{
+        width: 325px;
+    }
+    .topImgs{
+        margin-left: 15.5rem;
+        margin-top: -11rem;      
+    }
+}

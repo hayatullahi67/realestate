@@ -1,0 +1,138 @@
+.container{
+    width: 100%;
+    background: #fff;
+}
+
+.innerContainer{
+    width: 100%;
+    margin: auto;
+}
+.profile{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 60%;    
+    margin-top: 3rem;
+}
+.profile p{
+    color: #7D7D7D;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+.profile p:hover{
+    color: #F13D31;
+    font-weight: 900;
+}
+.ProSetNot{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin-right: 2rem;
+    
+}
+.ProSetNot p{
+    color: #7D7D7D;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+.ProSetNot p:hover{
+    color: #F13D31;
+    font-weight: 900;
+}
+.line{
+    width: 1332.006px;
+    height: 1px;
+    background: rgba(15, 15, 15, 0.25);
+    margin-top: 24px;
+}
+.personalInfo{
+    width: 60%;
+}
+.personalInfo p{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 40px;
+}
+.lefthand{
+    width: 10px; 
+    height: 10px;
+    margin-left: 2rem;
+    margin-top: 10px;
+}
+/* Button.css */
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .button:active {
+    background-color: #004085;
+  }
+  
+  .button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+  
+@media screen and (max-width: 1024px){
+    .ProSetNot{
+        width: 65%;
+        margin-right: .2rem;
+    }
+
+}
+
+
+@media screen and (max-width: 768px){
+    .ProSetNot p{
+        font-size: 16px;
+    }
+}
+.notificationLink {
+    display: flex;
+    align-items: center;
+  }
+  
+  .notificationBell {
+    position: relative;
+    margin-left: 8px;
+  }
+  
+  .bellIcon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  

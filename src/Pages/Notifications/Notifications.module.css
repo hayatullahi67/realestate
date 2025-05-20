@@ -1,0 +1,119 @@
+.container{
+    width: 70%;
+    margin: auto;
+    background: #fff;
+    margin-right: 10rem;
+    margin-bottom: 5rem;
+}
+.innerCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+}
+.flexbtn{
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+.treated{
+    background-color: #28a745;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+}
+.not{
+    background-color: rgb(247, 13, 13); /* light red */
+    color: #f8d7da; /* dark red */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  
+}
+.viewImagesBtn{
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: blue;
+}
+.client{
+    font-size: 16px;
+    font-weight: 400;
+    color: #7D7D7D !important;
+    font-family: Inter;
+}
+.innerCard p{
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+.innerCard span{
+    color: #7D7D7D;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+.innerCard div{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+.card p{
+    color: #7D7D7D;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 3px;
+}
+.downarrow{
+    cursor: pointer;
+}
+.card{
+    padding: 25px 0 20px 20px;
+    border: 1px solid rgba(15, 15, 15, 0.25);
+    border-top: transparent;
+    border-right: transparent;
+}
+
+@media screen and (max-width: 1024px){
+    .container{
+        margin-right: 6rem;
+    }
+    .innerCard span{
+        font-size: 14px;
+    }
+    .card p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .container{
+        margin-right: 4rem;
+    }
+    .innerCard span{
+        font-size: 13px;
+    }
+    .card{
+        padding: 15px 0 12px 12px;
+    }
+    .card p{
+        font-size: 13px;
+    }
+
+}

@@ -1,0 +1,551 @@
+/* 
+
+ .container {
+    width: 90%;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+   
+    
+
+}
+
+.container h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 50px;
+    width: 98%;
+    margin: auto;
+}
+
+.innerContainer {
+    width: 85%;
+    margin: auto;
+}
+
+.innerContainer h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.imgDiv {
+    display: grid;
+ 
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    gap: 1%;
+    margin-top: 30px;
+    position: relative;
+    justify-content: center;
+     
+    width: 100%;
+
+}
+
+.lekkiphase2, .amenestate, .solomade {
+    width: 100%;
+    height: 246px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.imgInnerDiv {
+    display: grid;
+    max-width: 100%;
+    width: 100%;
+   
+
+}
+
+.textOne {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTwo {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.textThree {
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.fav {
+    margin-left: 18px;
+}
+
+.textStar1, .textStar2, .textStar3 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.topImgs li {
+    list-style-type: none;
+}
+
+.topImgs {
+    position: absolute;
+    margin-left: 24.5rem;
+    margin-top: -15rem;
+    text-decoration: none;  
+}
+
+.apartment {
+    width: 100%;
+    height: 31px;
+    background: rgb(77, 75, 75);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+@media screen and (max-width: 1024px) {
+    .lekkiphase2, .amenestate, .solomade {
+        width: 285px;
+        height: 196px;
+    }
+
+    .topImgs {
+        margin-left: 13.5rem;
+        margin-top: 2rem;
+    }
+
+    .apartment {
+        width: 32.5%;
+        height: 26px;
+        margin-top: 10.6rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 12px;
+    }
+
+    .textOne {
+        font-size: 13px;
+        margin-top: -1.5rem;
+    }
+
+    .textTwo {
+        font-size: 13px;
+        margin-top: -2rem;
+    }
+
+    .textThree {
+        font-size: 13px;
+        margin-top: -2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .topImgs {
+        margin-left: 10rem;
+        margin-top: 1rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 210px;
+        height: 166px;
+    }
+
+    .textOne {
+        font-size: 10px;
+        margin-top: -2rem;
+    }
+
+    .textTwo {
+        font-size: 10px;
+        margin-top: -3rem;
+    }
+
+    .textThree {
+        font-size: 10px;
+        margin-top: -4rem;
+    }
+
+    .apartment {
+        width: 32.2%;
+        margin-top: 8.8rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 10px;
+    }
+
+    .fav {
+        width: 18px;
+        height: 15px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+        margin-left: 9px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .imgDiv {
+        display: grid;
+        gap: 5%;
+        position: inherit;
+        height: 72rem;
+    }
+
+    .imgInnerDiv {
+        height: 345px;
+    }
+
+    .topImgs {
+        margin-left: 15rem;
+        margin-top: 2rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 320px;
+        height: 205px;
+    }
+
+    .apartment {
+        width: 75.5%;
+        margin-top: 11.2rem;
+    }
+}
+ */
+
+ button{
+    border: none;
+    background: none;
+}
+
+ .container {
+    width: 90%;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 50px;
+    width: 98%;
+    margin: auto;
+}
+
+.innerContainer {
+    width: 85%;
+    margin: auto;
+}
+
+.innerContainer h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.imgDiv {
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); Default 3 columns */
+    gap: 1%;
+    margin-top: 30px;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+}
+
+.lekkiphase2, .amenestate, .solomade {
+    width: 100%;
+    height: 246px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.imgInnerDiv {
+    /* display: grid; */
+    max-width: 100%;
+    width: 100%;
+}
+
+.textOne {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTwo {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.textThree {
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fav {
+    margin-left: 18px;
+}
+
+.textStar1, .textStar2, .textStar3 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.topImgs li {
+    list-style-type: none;
+}
+
+
+.topImgs {
+        position: absolute;
+        margin-left: 18.5rem;
+        margin-top: -15.5em;
+        text-decoration: none;
+}
+
+
+.apartment {
+    width: 100%;
+    height: 31px;
+    background: rgb(77, 75, 75);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.soldLabel {
+   
+    background-color: rgba(255, 0, 0, 0.8); /* Red background with slight transparency */
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 10;
+    width: fit-content;
+  }
+  
+
+/* Media Query for devices with width 1024px and smaller */
+ /* @media screen and (max-width: 1024px) {
+    .lekkiphase2, .amenestate, .solomade {
+        width: 285px;
+        height: 196px;
+    }
+
+    .topImgs {
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .apartment {
+        width: 32.5%;
+        height: 26px;
+        margin-top: 10.6rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 12px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .imgDiv {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .topImgs {
+        margin-left: 10rem;
+        margin-top: 1rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 210px;
+        height: 166px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+
+    .apartment {
+        width: 32.2%;
+        margin-top: 8.8rem;
+    }
+
+    .fav {
+        width: 18px;
+        height: 15px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .imgDiv {
+        grid-template-columns: 1fr; 
+        gap: 5%;
+        height: auto; 
+    }
+
+    .imgInnerDiv {
+        height: auto;
+    }
+
+    .topImgs {
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 100%;
+        height: auto; 
+    }
+
+    .apartment {
+        width: 100%;
+        margin-top: 11.2rem;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+}  
+ */
+ @media screen and (max-width: 1024px) {
+     .topImgs{
+        
+        margin-left: 13rem;
+        margin-top: -17rem;
+     }
+
+
+}
+@media screen and (max-width: 991px) {
+    .topImgs{
+       
+       margin-left: 20rem;
+    }
+
+
+}
+
+@media screen and (max-width: 897px) {
+    .topImgs{
+       
+       margin-left: 17rem;
+    }
+    
+
+}
+@media screen and (max-width: 785px) {
+    .topImgs{
+       
+       margin-left: 17rem;
+    }
+    
+    
+}
+@media screen and (max-width: 767px) {
+    .topImgs{
+       
+       margin-left:30em;
+    }
+    
+    
+}
+@media screen and (max-width: 640px) {
+    .topImgs{
+       
+       margin-left:28em;
+    }
+    
+    
+}

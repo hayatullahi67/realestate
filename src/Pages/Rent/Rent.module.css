@@ -1,0 +1,974 @@
+/* 
+.container {
+    width: 85%;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+    height: auto;
+   
+    
+
+}
+
+.container h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 50px;
+    width: 98%;
+    margin: auto;
+}
+
+.innerContainer {
+    width: 90%;
+    margin: auto;
+}
+
+.innerContainer h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.imgDiv {
+    display: grid;
+ 
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    gap: 1%;
+    margin-top: 30px;
+    position: relative;
+    justify-content: center;
+     row-gap: 30px;
+    width: 100%;
+}
+
+.lekkiphase2, .amenestate, .solomade {
+    min-width: 365px;
+    height: 246px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.imgInnerDiv {
+    display: grid;
+    max-width: 100%;
+}
+
+.textOne {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTwo {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.textThree {
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.fav {
+    margin-left: 18px;
+}
+
+.textStar1, .textStar2, .textStar3 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.topImgs li {
+    list-style-type: none;
+}
+
+.topImgs {
+    position: absolute;
+    margin-left: 18.5rem;
+    margin-top: 4rem;
+
+    text-decoration: none;
+}
+
+.apartment {
+    width: 365px;
+    height: 31px;
+    background: rgba(16, 15, 15, 0.47);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    margin-top: 13.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .lekkiphase2, .amenestate, .solomade {
+        width: 285px;
+        height: 196px;
+    }
+
+    .topImgs {
+        margin-left: 13.5rem;
+        margin-top: 2rem;
+    }
+
+    .apartment {
+        width: 32.5%;
+        height: 26px;
+        margin-top: 10.6rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 12px;
+    }
+
+    .textOne {
+        font-size: 13px;
+        margin-top: -1.5rem;
+    }
+
+    .textTwo {
+        font-size: 13px;
+        margin-top: -2rem;
+    }
+
+    .textThree {
+        font-size: 13px;
+        margin-top: -2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .topImgs {
+        margin-left: 10rem;
+        margin-top: 1rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 210px;
+        height: 166px;
+    }
+
+    .textOne {
+        font-size: 10px;
+        margin-top: -2rem;
+    }
+
+    .textTwo {
+        font-size: 10px;
+        margin-top: -3rem;
+    }
+
+    .textThree {
+        font-size: 10px;
+        margin-top: -4rem;
+    }
+
+    .apartment {
+        width: 32.2%;
+        margin-top: 8.8rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 10px;
+    }
+
+    .fav {
+        width: 18px;
+        height: 15px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+        margin-left: 9px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .imgDiv {
+        display: grid;
+        gap: 5%;
+        position: inherit;
+        height: 72rem;
+    }
+
+    .imgInnerDiv {
+        height: 345px;
+    }
+
+    .topImgs {
+        margin-left: 15rem;
+        margin-top: 2rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 320px;
+        height: 205px;
+    }
+
+    .apartment {
+        width: 75.5%;
+        margin-top: 11.2rem;
+    }
+} */
+
+
+button{
+    border: none;
+    background: none;
+}
+
+ .container {
+    width: 90%;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 50px;
+    width: 98%;
+    
+    margin: auto;
+}
+
+.innerContainer {
+    width: 85%;
+    margin: auto;
+}
+
+.innerContainer h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.imgDiv {
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); Default 3 columns */
+    gap: 1%;
+    margin-top: 30px;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+}
+
+.lekkiphase2, .amenestate, .solomade {
+    width: 100%;
+    height: 246px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.imgInnerDiv {
+    /* display: grid; */
+    max-width: 100%;
+    width: 100%;
+}
+
+.textOne {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTwo {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.textThree {
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fav {
+    margin-left: 18px;
+}
+
+.textStar1, .textStar2, .textStar3 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.topImgs li {
+    list-style-type: none;
+}
+
+
+.topImgs {
+        position: absolute;
+        margin-left: 18.5rem;
+        margin-top: -15.5em;
+        text-decoration: none;
+}
+
+
+.apartment {
+    width: 100%;
+    height: 31px;
+    background: rgb(77, 75, 75);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Media Query for devices with width 1024px and smaller */
+ /* @media screen and (max-width: 1024px) {
+    .lekkiphase2, .amenestate, .solomade {
+        width: 285px;
+        height: 196px;
+    }
+
+    .topImgs {
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .apartment {
+        width: 32.5%;
+        height: 26px;
+        margin-top: 10.6rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 12px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .imgDiv {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .topImgs {
+        margin-left: 10rem;
+        margin-top: 1rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 210px;
+        height: 166px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+
+    .apartment {
+        width: 32.2%;
+        margin-top: 8.8rem;
+    }
+
+    .fav {
+        width: 18px;
+        height: 15px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .imgDiv {
+        grid-template-columns: 1fr; 
+        gap: 5%;
+        height: auto; 
+    }
+
+    .imgInnerDiv {
+        height: auto;
+    }
+
+    .topImgs {
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 100%;
+        height: auto; 
+    }
+
+    .apartment {
+        width: 100%;
+        margin-top: 11.2rem;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+}  
+ */
+
+ button{
+    border: none;
+    background: none;
+}
+
+ .container {
+    width: 90%;
+    background: #fff;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 50px;
+    width: 98%;
+    
+    margin: auto;
+}
+
+.innerContainer {
+    width: 85%;
+    margin: auto;
+}
+
+.innerContainer h2 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.imgDiv {
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); Default 3 columns */
+    gap: 1%;
+    margin-top: 30px;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+}
+
+.lekkiphase2, .amenestate, .solomade {
+    width: 100%;
+    height: 246px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.imgInnerDiv {
+    /* display: grid; */
+    max-width: 100%;
+    width: 100%;
+}
+
+.textOne {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTwo {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.textThree {
+    color: #F13D31;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fav {
+    margin-left: 18px;
+}
+
+.textStar1, .textStar2, .textStar3 {
+    color: #0B0C0C;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.next {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin-top: 3.3rem;
+    cursor: pointer;
+}
+
+.topImgs li {
+    list-style-type: none;
+}
+
+
+.topImgs {
+        position: absolute;
+        margin-left: 18.5rem;
+        margin-top: -15.5em;
+        text-decoration: none;
+}
+
+
+.apartment {
+    width: 100%;
+    height: 31px;
+    background: rgb(77, 75, 75);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Media Query for devices with width 1024px and smaller */
+ /* @media screen and (max-width: 1024px) {
+    .lekkiphase2, .amenestate, .solomade {
+        width: 285px;
+        height: 196px;
+    }
+
+    .topImgs {
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .apartment {
+        width: 32.5%;
+        height: 26px;
+        margin-top: 10.6rem;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 12px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .imgDiv {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .topImgs {
+        margin-left: 10rem;
+        margin-top: 1rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 210px;
+        height: 166px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+
+    .apartment {
+        width: 32.2%;
+        margin-top: 8.8rem;
+    }
+
+    .fav {
+        width: 18px;
+        height: 15px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .imgDiv {
+        grid-template-columns: 1fr; 
+        gap: 5%;
+        height: auto; 
+    }
+
+    .imgInnerDiv {
+        height: auto;
+    }
+
+    .topImgs {
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        width: 100%;
+        height: auto; 
+    }
+
+    .apartment {
+        width: 100%;
+        margin-top: 11.2rem;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+}  
+ */
+ @media screen and (max-width: 1024px) {
+     .topImgs{
+        
+        margin-left: 13rem;
+        margin-top: -17rem;
+     }
+
+
+}
+@media screen and (max-width: 991px) {
+    .topImgs{
+       
+       margin-left: 20rem;
+    }
+
+
+}
+
+@media screen and (max-width: 897px) {
+    .topImgs{
+       
+       margin-left: 17rem;
+    }
+    
+
+}
+@media screen and (max-width: 785px) {
+    .topImgs{
+       
+       margin-left: 17rem;
+    }
+    
+    
+}
+@media screen and (max-width: 767px) {
+    .topImgs{
+       
+       margin-left:30em;
+    }
+    
+    
+}
+@media screen and (max-width: 640px) {
+    .topImgs{
+       
+       margin-left:28em;
+    }
+    
+    
+}
+
+@media screen and (max-width: 600px) {
+    .topImgs{
+       
+       margin-left:25em;
+    }
+    
+    
+}
+
+@media screen and (max-width: 555px) {
+    .topImgs{
+       
+       margin-left:22em;
+    }
+    
+    
+}
+
+@media screen and (max-width: 500px) {
+    .topImgs{
+       
+       margin-left:18em;
+    }
+    
+    
+}
+
+
+
+
+@media screen and (max-width: 425px) {
+    .topImgs{
+       
+       margin-left:16em;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 380px) {
+    .topImgs{
+       
+       margin-left:14em;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 340px) {
+    .topImgs{
+       
+       margin-left:11em;
+    }
+    
+    
+}
+
+@media screen and (max-width: 300px) {
+    .container {
+        width: 95%;
+        padding: 5px;
+    }
+
+    .innerContainer {
+        width: 95%;
+    }
+
+    .container h2 {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+
+    .innerContainer h2 {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        height: 180px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 10px;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 10px;
+    }
+
+    .fav {
+        margin-left: 10px;
+    }
+
+    .next {
+        width: 40px;
+        height: 40px;
+        margin-top: 2rem;
+    }
+
+    .topImgs {
+        margin-left: 11em;
+        margin-top: -13em;
+    }
+
+    .apartment {
+        height: 25px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .container {
+        width: 98%;
+        padding: 3px;
+    }
+
+    .innerContainer {
+        width: 98%;
+    }
+
+    .container h2 {
+        font-size: 16px;
+    }
+
+    .innerContainer h2 {
+        font-size: 13px;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        height: 160px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 9px;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 9px;
+    }
+
+    .fav {
+        margin-left: 8px;
+    }
+
+    .next {
+        width: 35px;
+        height: 35px;
+    }
+
+    .topImgs {
+        margin-left: 7em;
+        margin-top: -11em;
+    }
+
+    .apartment {
+        height: 22px;
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    .container {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .innerContainer {
+        width: 100%;
+    }
+
+    .container h2 {
+        font-size: 15px;
+    }
+
+    .innerContainer h2 {
+        font-size: 12px;
+    }
+
+    .lekkiphase2, .amenestate, .solomade {
+        height: 140px;
+    }
+
+    .textOne, .textTwo, .textThree {
+        font-size: 8px;
+    }
+
+    .textStar1, .textStar2, .textStar3 {
+        font-size: 8px;
+    }
+
+    .fav {
+        margin-left: 6px;
+    }
+
+    .next {
+        width: 30px;
+        height: 30px;
+    }
+
+    .topImgs {
+        margin-left: 6em;
+        margin-top: -10em;
+    }
+
+    .apartment {
+        height: 20px;
+        font-size: 8px;
+    }
+}

@@ -1,0 +1,28 @@
+.bggray{
+    background-color: rgb(236, 236, 236);
+    width: 90%;
+    height: fit-content; 
+    padding: 15px;
+    border-radius: 5px;
+}
+.sectionsearch{
+    width: 89%;
+}
+.dflex{
+    display: flex;
+    justify-content:space-between;
+}
+.sel{
+    height: 40px !important;
+     background-color: white !important;
+     padding: 0px;
+     width: 200px !important;
+
+}
+th{
+    border: 2px solid black;
+    
+}
+table{
+  width: 75%;
+}

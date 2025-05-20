@@ -1,0 +1,175 @@
+.container{
+    width: 100%;
+    background-color: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.innerContainer{
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logoDiv{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.realAgent{
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.firstNav{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+.secondNav{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+nav{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+nav li{
+    list-style-type: none;
+    color: var(--neutral-dark);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+}  
+nav li:hover{
+    color: var(--primary);
+    background-color: var(--primary-light);
+}
+.hamburger{
+    display: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+.hamburger:hover{
+    background-color: var(--neutral-light);
+}
+.mobileNav{
+    display: none;
+}
+.heartImg{
+    width: 24px;
+    height: 21px;
+    fill: var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.heartImg:hover{
+    fill: var(--primary-dark);
+    transform: scale(1.1);
+}
+a{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1024px){
+    .firstNav{
+        margin-right: 2rem;
+    }
+    nav{
+        gap: 1rem;
+    }
+    nav li{
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+    }
+}
+
+@media screen and (max-width: 868px){
+    .firstNav{
+        display: none;
+    }
+    .secondNav{
+        display: none;
+    }
+    .hamburger{
+        display: block;
+    }
+    .mobileMenu{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        width: 300px;
+        background-color: white;
+        padding: 1rem;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
+        border-radius: var(--radius) 0 0 var(--radius);
+    }
+    .active{
+        top: 4rem;
+    }
+    .mobileMenu li{
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: left;
+    }
+    .mobileMenu li:hover{
+        background-color: var(--primary-light);
+    }
+    .mobileNav{
+        display: block;
+    }
+    nav li{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .mobileMenu{
+        width: 100%;
+        border-radius: 0;
+    }
+    .active{
+        top: 3.5rem;
+    }
+}
+/* Example CSS for logout button */
+.logoutButton {
+    background: none;
+    border: none;
+    color: var(--neutral-dark);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+.logoutButton:hover {
+    color: var(--error);
+    background-color: var(--neutral-light);
+}
+.flex{
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
