@@ -73,12 +73,18 @@ const Header = () => {
             )}
           </div>
           <div className={navOpen ? classes.active : classes.mobileMenu}>
+          <div className={classes.AiOutlineClose}> <AiOutlineClose className={classes.Icons} onClick={handleNavToggle} /></div>
+
             <nav className={classes.mobileNav}>
+
               <Link to="/" className={classes.navlink} onClick={handleNavLinkClick}><li>Home</li></Link>
               <Link to="/buy" className={classes.navlink} onClick={handleNavLinkClick}><li>Buy</li></Link>
               <Link to="/rent" className={classes.navlink} onClick={handleNavLinkClick}><li>Rent</li></Link>
               <Link to="/commercial" className={classes.navlink} onClick={handleNavLinkClick}><li>Commercial</li></Link>
+            <Link to="/favorites" className={classes.navlink} onClick={handleNavLinkClick}><li>Favorites</li></Link>
+              
               <Link to="/find-agent" className={classes.navlink} onClick={handleNavLinkClick}><li>Find Agent</li></Link>
+          
               <Link to="/about" className={classes.navlink} onClick={handleNavLinkClick}><li>About Us</li></Link>
               {isAuthenticated ? (
                 <>

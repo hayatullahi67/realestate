@@ -53,6 +53,56 @@ const Properties = () => {
 
     if (loading) return <p>Loading properties...</p>;
 
+    const handleClick = (property) => {
+        const propertiesValue = {
+            mainImageUrl: property.mainImageUrl,
+            propertyType: property.propertyType,
+            beds: property.beds,
+            baths: property.baths,
+            location: property.location,
+            lga: property.lga,
+            state: property.state,
+            price: property.price,
+           
+
+            id: property.id,
+        };
+    
+        // Retrieve existing properties from local storage
+        const existingPropertiesStr = localStorage.getItem("PropertiesValue");
+        let existingProperties = [];
+    
+        // Check if existing properties are present and parse if they are
+        if (existingPropertiesStr) {
+            try {
+                existingProperties = JSON.parse(existingPropertiesStr);
+                // Ensure it's an array
+                if (!Array.isArray(existingProperties)) {
+                    console.error("Existing properties data is not an array:", existingProperties);
+                    existingProperties = []; // Reset to empty array if it's not valid
+                }
+            } catch (error) {
+                console.error("Error parsing existing properties:", error);
+                existingProperties = []; // Reset to empty array on parse error
+            }
+        }
+    
+        // Check if the property already exists in the favorites
+        const propertyExists = existingProperties.some((item) => item.id === propertiesValue.id);
+        if (!propertyExists) {
+            // Add the new property to the array
+            existingProperties.push(propertiesValue);
+            console.log("Updated properties before saving:", existingProperties); // Debug log
+    
+            // Save the updated properties array back to local storage
+            localStorage.setItem("PropertiesValue", JSON.stringify(existingProperties));
+            console.log("Property data saved:", propertiesValue); // Log the saved property data
+        } else {
+            console.log("Property already in favorites:", propertiesValue.id);
+        }
+    };
+
+    
     return (
         <div className={classes.container}>
             <div className="row">
@@ -66,7 +116,7 @@ const Properties = () => {
                             <h2 className='pb-5'> Properties for Rent </h2>
                         </div>
                         {properties.map(property => (
-                            <div key={property.id} className="col-12 col-md-6 col-lg-4 mb-4">
+                            <div  className="col-12 col-md-6 col-lg-4 mb-4">
                                 <div className={classes.imgInnerDiv}>
                                     <img
                                         src={property.mainImageUrl}

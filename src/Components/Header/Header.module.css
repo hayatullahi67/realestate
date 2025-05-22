@@ -48,6 +48,9 @@ nav{
     gap: 2rem;
     align-items: center;
 }
+.AiOutlineClose{
+    display: none;
+}
 nav li{
     list-style-type: none;
     color: var(--neutral-dark);
@@ -116,17 +119,35 @@ a{
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: -100vh;
-        right: 0;
+        top: 0;
+        right: -300px;
+        height: 100vh;
         width: 300px;
         background-color: white;
         padding: 1rem;
         box-shadow: var(--shadow-lg);
-        transition: var(--transition);
+        transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
         border-radius: var(--radius) 0 0 var(--radius);
+        z-index: 9999;
     }
     .active{
-        top: 4rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 300px;
+        background-color: white;
+        padding: 1rem;
+        box-shadow: var(--shadow-lg);
+        transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
+        border-radius: var(--radius) 0 0 var(--radius);
+        z-index: 9999;
+    }
+    
+    .AiOutlineClose{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
     }
     .mobileMenu li{
         padding: 0.75rem 1rem;
@@ -146,11 +167,13 @@ a{
 
 @media screen and (max-width: 500px){
     .mobileMenu{
-        width: 100%;
+        width: 100vw;
         border-radius: 0;
+        right: -100vw;
     }
     .active{
-        top: 3.5rem;
+        right: 0;
+        top: 0;
     }
 }
 /* Example CSS for logout button */

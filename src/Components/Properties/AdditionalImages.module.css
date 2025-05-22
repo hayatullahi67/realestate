@@ -6,7 +6,7 @@
     margin-right: 5rem;
     padding-bottom: 50px;
 }
-.innerContainer{
+.innerContainer{ 
     width: 100%;
 }
 .text h4{
@@ -21,7 +21,7 @@
     width: 500px;
 }
 .text h5{
-    color: #F13D31;
+    color: #007bff;
     font-family: Inter;
     font-size: 24px;
     font-style: normal;
@@ -120,9 +120,11 @@
         position: absolute;
         bottom: 1px;
         right: 1px;      
-    min-width: 497px;
+    /* min-width: 497px; */
+    min-width: 100%;
     min-height:315px !important;
-    max-width: 497px;
+    /* max-width: 497px; */
+    max-width: 100%;
     max-height:315px !important;
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
@@ -189,8 +191,8 @@
     width: 300px;
     height: max-content;
     border-radius: 5px;
-    border: 0.5px solid var(--Grey, #7D7D7D);
-    background: #FFF;
+    border: 1.5px solid #007bff;
+    background: #f8faff;
     text-align: center;
     padding-top: 2rem;
     /* position: relative;
@@ -212,6 +214,7 @@
     border-radius: 50%;
     margin-bottom: 5px;
     overflow: hidden;
+    border: 3px solid #007bff;
 }
 
 
@@ -224,10 +227,10 @@
     align-items: flex-start;
     gap: 6px;
     border-radius: 12px;
-    background: var(--Grey, #7D7D7D);
+    background: #007bff;
     border: none;
     align-items: center;
-    color: #FFF;
+    color: #fff;
     font-family: Inter;
     font-size: 15px;
     font-style: normal;
@@ -235,6 +238,11 @@
     line-height: normal;  
     cursor: pointer;  
     margin: auto;
+    transition: background 0.2s;
+}
+
+.callButton:hover {
+    background: #0056b3;
 }
 
 .updated h4{
@@ -307,7 +315,7 @@
 
    .lineclose{
     font-size: 40px;
-    color:  white;
+    color:  #007bff;
     
     cursor: pointer;
    }

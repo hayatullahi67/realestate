@@ -1,11 +1,12 @@
 /* General Styles */
 .container {
     width: 100%;
-    background: #F6F4F3;
-    height: 50rem;
+    background: #f8faff;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 30px;
 }
 
 .innerContainer {
@@ -16,107 +17,114 @@
 }
 
 .text {
-    color: var(--Black-colour, #262626);
+    color: #222;
     font-family: Inter, sans-serif;
-    font-size: 25px;
-    font-weight: 100;
+    font-size: 28px;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 2rem;
 }
 
 .text span {
-    font-weight: 600;
+    font-weight: 700;
+    color: #007bff;
 }
 
 .logInForm {
     width: 100%;
-    max-width: 490px;
-    padding: 2rem;
-    border-radius: 5px;
-    background: #FFF;
-    box-shadow: 0px -4px 4px -1px rgba(0, 0, 0, 0.25) inset;
+    max-width: 420px;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 32px 0 rgba(0, 123, 255, 0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
     text-align: center;
 }
 
 .logInForm input {
     width: 100%;
-    max-width: 424px;
-    height: 70px;
-    border-radius: 5px;
-    border: 1px solid rgba(15, 15, 15, 0.50);
-    color: #7D7D7D;
+    height: 54px;
+    border-radius: 7px;
+    border: 1.5px solid #dbeafe;
+    color: #222;
     font-family: Inter, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    margin-top: 2rem;
-    padding-left: 20px;
+    margin-top: 1.2rem;
+    padding-left: 18px;
+    background: #f8faff;
+    transition: border 0.2s;
+}
+
+.logInForm input:focus {
+    border: 1.5px solid #007bff;
+    outline: none;
 }
 
 .logInButton {
     width: 100%;
-    max-width: 424px;
-    height: 70px;
-    padding: 23px 0;
-    border-radius: 5px;
-    background: #F13D31;
-    color: #FFF;
+    height: 54px;
+    border-radius: 7px;
+    background: #007bff;
+    color: #fff;
     font-family: Inter, sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     border: none;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(0,123,255,0.08);
+    transition: background 0.2s;
 }
 
 .logInButton:hover {
-    border: 8px solid #9b3a33;
+    background: #0056b3;
 }
 
 .logInForm span {
-    color: #0F8CBA;
+    color: #007bff;
     font-family: Inter, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
+    display: block;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
 }
 
 .logInForm span:hover {
-    font-weight: 600;
-}
-
-.logInForm div {
-    margin-top: 2rem;
+    text-decoration: underline;
 }
 
 .line {
     width: 100%;
     max-width: 424px;
     height: 1px;
-    background: rgba(15, 15, 15, 0.44);
+    background: #e3e8ee;
     margin: 2rem auto;
 }
 
 .createButton {
-    height: 70px;
+    height: 54px;
     width: 100%;
     max-width: 250px;
-    padding: 23px 0;
-    border-radius: 5px;
-    background: #0F8CBA;
-    color: #FFF;
+    border-radius: 7px;
+    background: #007bff;
+    color: #fff;
     font-family: Inter, sans-serif;
     font-size: 17px;
     font-weight: 700;
     border: none;
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 8px 0 rgba(0,123,255,0.08);
+    transition: background 0.2s;
 }
 
 .createButton:hover {
-    border: 1px solid #062589;
+    background: #0056b3;
 }
 
 /* Responsive Styles */
@@ -127,17 +135,17 @@
     }
     .logInForm input {
         width: 100%;
-        height: 60px;
-        font-size: 18px;
+        height: 48px;
+        font-size: 16px;
     }
     .logInButton {
         width: 100%;
-        height: 60px;
+        height: 48px;
         font-size: 16px;
     }
     .createButton {
         width: 100%;
-        height: 60px;
+        height: 48px;
         font-size: 16px;
     }
 }
@@ -152,18 +160,18 @@
     }
     .logInForm input {
         width: 100%;
-        height: 55px;
-        font-size: 16px;
+        height: 44px;
+        font-size: 15px;
     }
     .logInButton {
         width: 100%;
-        height: 55px;
-        font-size: 14px;
+        height: 44px;
+        font-size: 15px;
     }
     .createButton {
         width: 100%;
-        height: 55px;
-        font-size: 14px;
+        height: 44px;
+        font-size: 15px;
     }
 }
 
@@ -179,17 +187,17 @@
     }
     .logInForm input {
         width: 100%;
-        height: 50px;
+        height: 40px;
         font-size: 14px;
     }
     .logInButton {
         width: 100%;
-        height: 50px;
+        height: 40px;
         font-size: 14px;
     }
     .createButton {
         width: 100%;
-        height: 50px;
+        height: 40px;
         font-size: 14px;
     }
 }

@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, collection, updateDoc, addDoc } from 'firebase/firestore';
@@ -50,8 +48,18 @@ function AdditionalImages() {
       }
 
       try {
-        const propertyRef = doc(db, "properties", propertyId);
-        const propertySnap = await getDoc(propertyRef);
+        // Try to find the property in all three collections
+        const collections = ['properties', 'rent', 'buy'];
+        let propertySnap = null;
+        let propertyRef = null;
+
+        for (const collectionName of collections) {
+          propertyRef = doc(db, collectionName, propertyId);
+          propertySnap = await getDoc(propertyRef);
+          if (propertySnap.exists()) {
+            break;
+          }
+        }
 
         if (!propertySnap.exists()) {
           setError("Property not found.");

@@ -37,7 +37,7 @@ function Header({ toggleSidebar,isSidebarVisible }) {
             <div className="header-left ">
                       {/* logo start  */}
                       <div className="logo">
-                            Devingine
+                            ADMIN
                       </div>
 
                         {/* logo ends  */}

@@ -116,7 +116,7 @@ const Properties = () => {
                             <h2 className='pb-5'> Properties For sale </h2>
                         </div>
                         {properties.map(property => (
-                            <div key={property.id} className="col-12 col-md-6 col-lg-4 mb-4">
+                            <div  className="col-12 col-md-6 col-lg-4 mb-4">
                                 <div className={classes.imgInnerDiv}>
                                     <img
                                         src={property.mainImageUrl}
