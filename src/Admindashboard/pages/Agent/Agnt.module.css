@@ -1,548 +1,177 @@
-/* Base Responsive Container */
-.responsiveContainer {
-    min-height: 100vh;
-    box-sizing: border-box;
+.bggray{
+  background-color: rgb(236, 236, 236);
+  width: 90%;
+  height: fit-content; 
+  padding: 15px;
+  border-radius: 5px;
+}
+.sectionsearch{
+  width: 89%;
+}
+.dflex{
+  display: flex;
+  justify-content:space-between;
+}
+.sel{
+  height: 40px !important;
+   background-color: white !important;
+   padding: 0px;
+   width: 200px !important;
+
+}
+
+/* New Table Styles */
+.agentTable {
+width: 95%; /* Adjust table width */
+border-collapse: collapse; /* Remove space between borders */
+margin-top: 20px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+background-color: white;
+}
+
+.agentTable th,
+.agentTable td {
+padding: 12px 15px; /* Add padding */
+text-align: left;
+border-bottom: 1px solid #ddd; /* Light grey border */
+}
+
+.agentTable th {
+background-color: #007bff; /* Blue background for header */
+color: white; /* White text for header */
+font-weight: bold;
+text-transform: uppercase; /* Uppercase text */
+}
+
+.agentTable tbody tr:hover {
+background-color: #f2f2f2; /* Light grey hover effect */
+}
+
+.agentTable tbody tr:nth-child(even) {
+background-color: #f9f9f9; /* Alternate row color */
+}
+
+/* Remove old th and table styles if they conflict */
+th { /* Keeping this but adding !important if needed for override */
+  /* border: 2px solid black; */
+}
+
+table { /* Keeping this but adding !important if needed for override */
+/* width: 75%; */
+}
+
+/* Modal Styles */
+.modalOverlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* Ensure modal is on top */
+}
+
+.modalContent {
+background-color: white;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+max-width: 500px; /* Max width for the modal */
+width: 90%; /* Responsive width */
+position: relative;
+}
+
+.modalContent h2 {
+margin-top: 0;
+color: #007bff; /* Blue heading */
+border-bottom: 1px solid #eee;
+padding-bottom: 10px;
+margin-bottom: 15px;
+}
+
+.modalContent p {
+margin-bottom: 10px;
+font-size: 1rem;
+color: #333;
+}
+
+.modalContent strong {
+color: #555; /* Slightly darker color for labels */
+}
+
+.modalContent button {
+display: block;
+width: 100px; /* Set a width for the button */
+margin: 20px auto 0; /* Center the button */
+padding: 10px;
+background-color: #007bff; /* Blue button */
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 1rem;
+transition: background-color 0.3s ease;
+}
+
+.modalContent button:hover {
+background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .bggray {
+      width: 95%;
+      padding: 10px;
   }
-  
-  /* Stats Section */
-  .statsSection {
-    margin-bottom: 2rem;
+
+  .sectionsearch {
+      width: 95%;
   }
-  
-  .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    background-color: rgb(236, 236, 236);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .statCard {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .statCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .statTitle {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
-  .statValue {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #007bff;
-    margin: 0;
-  }
-  
-  /* Search Section */
-  .searchSection {
-    margin-bottom: 2rem;
-  }
-  
-  .searchContainer {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .searchInputWrapper {
-    flex: 1;
-    min-width: 250px;
-    position: relative;
-  }
-  
-  .searchInput {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-sizing: border-box;
-  }
-  
-  .searchInput:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-  }
-  
-  .filterWrapper {
-    min-width: 150px;
-  }
-  
-  .filterSelect {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
-  }
-  
-  .filterSelect:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  /* Table Section */
-  .tableSection {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  /* Status Badges */
-  .statusBadge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-block;
-  }
-  
-  .statusActive {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-  }
-  
-  .statusInactive {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-  }
-  
-  .statusDefault {
-    background-color: #e2e3e5;
-    color: #383d41;
-    border: 1px solid #d6d8db;
-  }
-  
-  /* No Data Component */
-  .noData {
-    padding: 2rem;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-  }
-  
-  /* Modal Styles */
-  .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-  
-  .modalContent {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    animation: modalSlideIn 0.3s ease;
-  }
-  
-  @keyframes modalSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .modalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .modalTitle {
-    margin: 0;
-    color: #007bff;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-  
-  .modalCloseBtn {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #999;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  
-  .modalCloseBtn:hover {
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  
-  .modalBody {
-    padding: 1.5rem;
-  }
-  
-  .modalField {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  .modalField strong {
-    color: #555;
-    min-width: 80px;
-    font-weight: 600;
-  }
-  
-  .modalStatusBadge {
-    margin-left: 0.5rem;
-  }
-  
-  .modalFooter {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid #eee;
-    text-align: right;
-  }
-  
-  .modalActionBtn {
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modalActionBtn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsive Design */
-  
-  /* Large Desktop (1200px and up) */
-  @media (min-width: 1200px) {
-    .statsGrid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .searchContainer {
-      justify-content: space-between;
-    }
-    
-    .searchInputWrapper {
-      max-width: 400px;
-    }
-  }
-  
-  /* Desktop (992px to 1199px) */
-  @media (max-width: 1199px) {
-    .responsiveContainer {
-      padding-left: 40px !important;
-      margin-left: 0px !important;
-    }
-    
-    .statsGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  /* Tablet (768px to 991px) */
-  @media (max-width: 991px) {
-    .responsiveContainer {
-      padding-left: 30px !important;
-      padding-right: 15px !important;
-      margin-left: 0px !important;
-      margin-top: 80px !important;
-    }
-    
-    .statsGrid {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 0.75rem;
-    }
-    
-    .statCard {
-      padding: 1rem;
-    }
-    
-    .statTitle {
-      font-size: 0.8rem;
-    }
-    
-    .statValue {
-      font-size: 1.5rem;
-    }
-    
-    .searchContainer {
+
+  .dflex {
       flex-direction: column;
-      align-items: stretch;
-    }
-    
-    .searchInputWrapper,
-    .filterWrapper {
-      min-width: unset;
+      gap: 10px;
+  }
+
+  .sel {
+      width: 100% !important;
+  }
+
+  .agentTable {
       width: 100%;
-    }
+      font-size: 14px;
   }
-  
-  /* Mobile Large (481px to 767px) */
-  @media (max-width: 767px) {
-    .responsiveContainer {
-      padding-left: 15px !important;
-      padding-right: 15px !important;
-      margin-top: 60px !important;
-    }
-    
-    .statsGrid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      padding: 0.5rem;
-    }
-    
-    .statCard {
-      padding: 0.75rem;
-    }
-    
-    .statTitle {
-      font-size: 0.75rem;
-      margin-bottom: 0.25rem;
-    }
-    
-    .statValue {
-      font-size: 1.25rem;
-    }
-    
-    .searchInput,
-    .filterSelect {
-      padding: 0.625rem 0.75rem;
-      font-size: 0.9rem;
-    }
-    
-    .modalContent {
-      margin: 0.5rem;
-      max-height: 95vh;
-    }
-    
-    .modalHeader {
-      padding: 1rem;
-    }
-    
-    .modalTitle {
-      font-size: 1.25rem;
-    }
-    
-    .modalBody {
-      padding: 1rem;
-    }
-    
-    .modalField {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
-    }
-    
-    .modalField strong {
-      min-width: unset;
-    }
+
+  .agentTable th,
+  .agentTable td {
+      padding: 8px 10px;
   }
-  
-  /* Mobile Small (320px to 480px) */
-  @media (max-width: 480px) {
-    .responsiveContainer {
-      padding-left: 10px !important;
-      padding-right: 10px !important;
-      margin-top: 50px !important;
-    }
-    
-    .statsGrid {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-      padding: 0.5rem;
-    }
-    
-    .statCard {
-      padding: 0.5rem;
-    }
-    
-    .statTitle {
-      font-size: 0.7rem;
-    }
-    
-    .statValue {
-      font-size: 1.1rem;
-    }
-    
-    .searchSection {
-      margin-bottom: 1rem;
-    }
-    
-    .searchInput,
-    .filterSelect {
-      padding: 0.5rem;
-      font-size: 0.85rem;
-    }
-    
-    .modalContent {
-      margin: 0.25rem;
-    }
-    
-    .modalHeader,
-    .modalBody,
-    .modalFooter {
-      padding: 0.75rem;
-    }
-    
-    .modalTitle {
-      font-size: 1.1rem;
-    }
-    
-    .modalField {
-      font-size: 0.9rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .modalActionBtn {
-      padding: 0.625rem 1.25rem;
-      font-size: 0.9rem;
-    }
+}
+
+@media (max-width: 480px) {
+  .bggray {
+      width: 100%;
+      padding: 8px;
   }
-  
-  /* Extra Small Mobile (below 320px) */
-  @media (max-width: 320px) {
-    .responsiveContainer {
-      padding-left: 5px !important;
-      padding-right: 5px !important;
-    }
-    
-    .statTitle {
-      font-size: 0.65rem;
-    }
-    
-    .statValue {
-      font-size: 1rem;
-    }
-    
-    .searchInput,
-    .filterSelect {
-      padding: 0.4rem;
-      font-size: 0.8rem;
-    }
-    
-    .modalTitle {
-      font-size: 1rem;
-    }
-    
-    .modalField {
-      font-size: 0.85rem;
-    }
+
+  .sectionsearch {
+      width: 100%;
   }
-  
-  /* Custom DataTable Responsive Overrides */
-  @media (max-width: 768px) {
-    /* Override DataTable default styles for better mobile experience */
-    .rdt_Table {
-      font-size: 0.8rem !important;
-    }
-    
-    .rdt_TableHead {
-      font-size: 0.75rem !important;
-    }
-    
-    .rdt_TableCell {
-      padding: 8px 4px !important;
-    }
-    
-    .rdt_TableHeadRow {
-      min-height: 40px !important;
-    }
-    
-    .rdt_TableRow {
-      min-height: 45px !important;
-    }
+
+  .agentTable {
+      font-size: 12px;
   }
-  
-  @media (max-width: 480px) {
-    .rdt_Table {
-      font-size: 0.75rem !important;
-    }
-    
-    .rdt_TableHead {
-      font-size: 0.7rem !important;
-    }
-    
-    .rdt_TableCell {
-      padding: 6px 2px !important;
-    }
-    
-    .rdt_Pagination {
-      font-size: 0.8rem !important;
-    }
+
+  .agentTable th,
+  .agentTable td {
+      padding: 6px 8px;
   }
-  
-  /* Print Styles */
-  @media print {
-    .modalOverlay,
-    .searchSection {
-      display: none !important;
-    }
-    
-    .responsiveContainer {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-    
-    .statsGrid {
-      break-inside: avoid;
-    }
+
+  .modalContent {
+      width: 95%;
+      padding: 15px;
   }
+}
