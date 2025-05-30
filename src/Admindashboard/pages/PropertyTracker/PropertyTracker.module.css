@@ -1,0 +1,130 @@
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  max-width: 600px; /* Max width for the modal */
+  width: 90%; /* Responsive width */
+  position: relative;
+  max-height: 80vh; /* Limit height */
+  overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.modalContent h2 {
+  margin-top: 0;
+  color: #007bff; /* Blue heading */
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.imagmodal {
+  width: 100%;
+  height: 200px !important;
+}
+.modalContent p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+.modalContent strong {
+  color: #555; /* Slightly darker color for labels */
+}
+.modalContent button {
+  display: block;
+  width: 100px; /* Set a width for the button */
+  margin: 20px auto 0; /* Center the button */
+  padding: 10px;
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+.modalContent button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+.modalContent img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.modalContent .additionalImages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+/* Updated: Set consistent size for additional images */
+.addmg {
+  width: 150px !important;
+  height: 150px !important;
+  /* object-fit: cover; */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.addmg:hover {
+  transform: scale(1.05);
+}
+.addimg {
+  width: 100%;
+  height: 200px;
+}
+.imageModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  width: 100%;
+}
+.imageModalContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Updated: Set selected image to 80% width */
+.selimg {
+  width: 80% !important;
+  height: auto !important;
+  max-height: 80vh !important;
+  object-fit: contain;
+}
+.closeImageButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 2001;
+}

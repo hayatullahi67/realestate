@@ -48,6 +48,7 @@ import PropertyTracking from './pages/PropertyTracker/PropertyTracker';
 
 import './App.css';
 import CheckUserActivity from '../checkUserActivity/CheckUserActivity'
+import Notification from './pages/Notification/Notification';
 
 function Adminroute() {
   
@@ -73,7 +74,7 @@ function Adminroute() {
         <Route   path='/' element={<Home isSidebarVisible={isSidebarVisible} />} />
         <Route path="/agent" element={<Users isSidebarVisible={isSidebarVisible} />} />
         <Route path="/propertytracking" element={<PropertyTracking isSidebarVisible={isSidebarVisible} />} />
-        
+        <Route path='/notifications' element={<Notification isSidebarVisible={isSidebarVisible} />} />
         
       </Routes>
       

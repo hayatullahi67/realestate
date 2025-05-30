@@ -77,6 +77,9 @@
   }.lg-width {
     width: 527px !important;
   }
+  .card-width{
+    width: 270px !important;
+  }
   button#pills-home-tab.active{
   background: #fff !important;
    display: block;

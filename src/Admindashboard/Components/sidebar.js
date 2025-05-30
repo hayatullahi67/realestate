@@ -26,14 +26,9 @@ export const sidebarData = [
     },
     {
         title: 'Notification',
-        path: '/notification',
+        path: '/admin/notifications',
         icon: <FaUikit />,
         CName: 'nav-text'
     },
-    {
-        title: 'User Profile',
-        path: '/user-profile',
-        icon: <FaChartBar />,
-        CName: 'nav-text'
-    }
+   
 ];

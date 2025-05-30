@@ -3,6 +3,7 @@ import { Chart as ChartJs, defaults } from 'chart.js/auto'
 import { Bar, Doughnut, Line } from 'react-chartjs-2'
 import { db } from '../../config';
 import { doc , collection,getDocs , query,where} from 'firebase/firestore';
+import { onSnapshot } from 'firebase/firestore';
 defaults.maintainAspectRatio = false;
 
 function Home({ isSidebarVisible }) {
@@ -15,40 +16,86 @@ function Home({ isSidebarVisible }) {
   const [soldProperties, setSoldProperties] = useState(0);
   const [rentProperties, setRentProperties] = useState(0);
   const [saleProperties, setSaleProperties] = useState(0);
+  const [weeklyPropertyData, setWeeklyPropertyData] = useState({
+    total: [0, 0, 0, 0, 0, 0, 0],
+    sold: [0, 0, 0, 0, 0, 0, 0],
+    rent: [0, 0, 0, 0, 0, 0, 0],
+    sale: [0, 0, 0, 0, 0, 0, 0]
+  });
+  const [chartLabels, setChartLabels] = useState([]);
+  const [users, setUsers] = useState([]); // State to store users
 
+  // useEffect(() => {
+  //   const fetchPropertyData = async () => {
+  //     try {
+  //       // Reference to the properties collection
+  //       const propertiesRef = collection(db, "properties");
 
+  //       // Fetch all properties
+  //       const totalQuerySnapshot = await getDocs(propertiesRef);
+  //       setTotalProperties(totalQuerySnapshot.size);
 
-  useEffect(() => {
-    const fetchPropertyData = async () => {
-      try {
-        // Reference to the properties collection
-        const propertiesRef = collection(db, "properties");
+  //       // Fetch sold properties
+  //       const soldQuery = query(propertiesRef, where("sold", "==", true));
+  //       const soldQuerySnapshot = await getDocs(soldQuery);
+  //       setSoldProperties(soldQuerySnapshot.size);
 
-        // Fetch all properties
-        const totalQuerySnapshot = await getDocs(propertiesRef);
-        setTotalProperties(totalQuerySnapshot.size);
+  //       // Fetch properties for rent
+  //       const rentQuery = query(propertiesRef, where("propertyType", "==", "rent"));
+  //       const rentQuerySnapshot = await getDocs(rentQuery);
+  //       setRentProperties(rentQuerySnapshot.size);
 
-        // Fetch sold properties
-        const soldQuery = query(propertiesRef, where("sold", "==", true));
-        const soldQuerySnapshot = await getDocs(soldQuery);
-        setSoldProperties(soldQuerySnapshot.size);
+  //       // Fetch properties for sale
+  //       const saleQuery = query(propertiesRef, where("propertyType", "==", "buy"));
+  //       const saleQuerySnapshot = await getDocs(saleQuery);
+  //       setSaleProperties(saleQuerySnapshot.size);
 
-        // Fetch properties for rent
-        const rentQuery = query(propertiesRef, where("propertyType", "==", "rent"));
-        const rentQuerySnapshot = await getDocs(rentQuery);
-        setRentProperties(rentQuerySnapshot.size);
+  //       // Get today's date and calculate the start of the week
+  //       const today = new Date();
+  //       const dayOfWeek = today.getDay(); // 0 is Sunday, 1 is Monday, etc.
+  //       const startOfWeek = new Date(today);
+  //       startOfWeek.setDate(today.getDate() - dayOfWeek + 1); // Set to Monday
+        
+  //       // Generate labels for the last 7 days
+  //       const labels = [];
+  //       for (let i = 0; i < 7; i++) {
+  //         const date = new Date(startOfWeek);
+  //         date.setDate(startOfWeek.getDate() + i);
+  //         labels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+  //       }
 
-        // Fetch properties for sale
-        const saleQuery = query(propertiesRef, where("propertyType", "==", "buy"));
-        const saleQuerySnapshot = await getDocs(saleQuery);
-        setSaleProperties(saleQuerySnapshot.size);
-      } catch (error) {
-        console.error("Error fetching property data: ", error);
-      }
-    };
+  //       const weeklyData = {
+  //         total: [0, 0, 0, 0, 0, 0, 0],
+  //         sold: [0, 0, 0, 0, 0, 0, 0],
+  //         rent: [0, 0, 0, 0, 0, 0, 0],
+  //         sale: [0, 0, 0, 0, 0, 0, 0]
+  //       };
 
-    fetchPropertyData();
-  }, []);
+  //       const allProperties = await getDocs(propertiesRef);
+  //       allProperties.forEach((doc) => {
+  //         const property = doc.data();
+  //         const propertyDate = property.createdAt?.toDate() || new Date();
+          
+  //         if (propertyDate >= startOfWeek) {
+  //           const dayIndex = Math.floor((propertyDate - startOfWeek) / (24 * 60 * 60 * 1000));
+  //           if (dayIndex >= 0 && dayIndex < 7) {
+  //             weeklyData.total[dayIndex]++;
+  //             if (property.sold) weeklyData.sold[dayIndex]++;
+  //             if (property.propertyType === "rent") weeklyData.rent[dayIndex]++;
+  //             if (property.propertyType === "buy") weeklyData.sale[dayIndex]++;
+  //           }
+  //         }
+  //       });
+
+  //       setWeeklyPropertyData(weeklyData);
+  //       setChartLabels(labels);
+  //     } catch (error) {
+  //       console.error("Error fetching property data: ", error);
+  //     }
+  //   };
+
+  //   fetchPropertyData();
+  // }, [totalProperties]);
   
   // const containerStyle = {
   //   width: isSidebarVisible ? 'calc(100% - 240px)' : '100%', // Adjust '250px' to your sidebar width
@@ -57,7 +104,227 @@ function Home({ isSidebarVisible }) {
   //   marginTop:'100px'
   // };
 
+  useEffect(() => {
+    const fetchPropertyData = async () => {
+      try {
+        console.log("Fetching property data..."); // Debug log
+        
+        // Reference to the properties collection
+        const propertiesRef = collection(db, "properties");
+  
+        // Fetch all properties
+        const totalQuerySnapshot = await getDocs(propertiesRef);
+        const totalCount = totalQuerySnapshot.size;
+        setTotalProperties(totalCount);
+        console.log("Total properties:", totalCount); // Debug log
+  
+        // Fetch sold properties
+        const soldQuery = query(propertiesRef, where("sold", "==", true));
+        const soldQuerySnapshot = await getDocs(soldQuery);
+        setSoldProperties(soldQuerySnapshot.size);
+  
+        // Fetch properties for rent
+        const rentQuery = query(propertiesRef, where("propertyType", "==", "rent"));
+        const rentQuerySnapshot = await getDocs(rentQuery);
+        setRentProperties(rentQuerySnapshot.size);
+  
+        // Fetch properties for sale
+        const saleQuery = query(propertiesRef, where("propertyType", "==", "buy"));
+        const saleQuerySnapshot = await getDocs(saleQuery);
+        setSaleProperties(saleQuerySnapshot.size);
+  
+        // Get today's date and calculate the start of the week (Monday)
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        const startOfWeek = new Date(today);
+        
+        // Calculate days to subtract to get to Monday
+        const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+        startOfWeek.setDate(today.getDate() - daysToSubtract);
+        startOfWeek.setHours(0, 0, 0, 0); // Set to start of day
+        
+        console.log("Start of week:", startOfWeek); // Debug log
+        
+        // Generate labels for the current week (Mon-Sun)
+        const labels = [];
+        for (let i = 0; i < 7; i++) {
+          const date = new Date(startOfWeek);
+          date.setDate(startOfWeek.getDate() + i);
+          labels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+        }
+        setChartLabels(labels);
+  
+        // Initialize weekly data arrays
+        const weeklyData = {
+          total: [0, 0, 0, 0, 0, 0, 0],
+          sold: [0, 0, 0, 0, 0, 0, 0],
+          rent: [0, 0, 0, 0, 0, 0, 0],
+          sale: [0, 0, 0, 0, 0, 0, 0]
+        };
+  
+        // Process all properties for weekly data
+        const allProperties = await getDocs(propertiesRef);
+        console.log("Processing", allProperties.size, "properties for weekly data"); // Debug log
+        
+        allProperties.forEach((doc) => {
+          const property = doc.data();
+          
+          // Get property creation date
+          let propertyDate;
+          if (property.createdAt) {
+            // Handle Firestore timestamp
+            propertyDate = property.createdAt.toDate ? property.createdAt.toDate() : new Date(property.createdAt);
+          } else {
+            // Fallback to current date if no createdAt field
+            propertyDate = new Date();
+          }
+          
+          console.log("Property date:", propertyDate); // Debug log
+          
+          // Check if property was created this week
+          if (propertyDate >= startOfWeek) {
+            // Calculate which day of the week (0 = Monday, 6 = Sunday)
+            const daysDiff = Math.floor((propertyDate - startOfWeek) / (24 * 60 * 60 * 1000));
+            
+            if (daysDiff >= 0 && daysDiff < 7) {
+              console.log("Adding property to day", daysDiff); // Debug log
+              
+              // Add to total for that day
+              weeklyData.total[daysDiff]++;
+              
+              // Add to specific categories
+              if (property.sold === true) {
+                weeklyData.sold[daysDiff]++;
+              }
+              if (property.propertyType === "rent") {
+                weeklyData.rent[daysDiff]++;
+              }
+              if (property.propertyType === "buy") {
+                weeklyData.sale[daysDiff]++;
+              }
+            }
+          }
+        });
+  
+        console.log("Weekly data:", weeklyData); // Debug log
+        setWeeklyPropertyData(weeklyData);
+        
+      } catch (error) {
+        console.error("Error fetching property data: ", error);
+      }
+    };
+  
+    fetchPropertyData();
+  }, []); // Empty dependency array - only run once on mount
+  
+  
+  // If you want the chart to update when you add new properties, 
+  // you can create a separate function to refresh the data:
+  
+  const refreshData = async () => {
+    // Same fetchPropertyData logic here
+    // Call this function after adding a new property
+  };
+  
+  // Or if you want to poll for updates every few seconds:
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      console.log("Polling for updates...");
+      // Re-fetch data every 30 seconds
+      const fetchPropertyData = async () => {
+        // Same logic as above
+      };
+      await fetchPropertyData();
+    }, 30000); // 30 seconds
+  
+    return () => clearInterval(interval);
+  }, []);
+  
+  
+  // Alternative: Use Firestore real-time listener (recommended)
+  useEffect(() => {
+    const propertiesRef = collection(db, "properties");
 
+    // Set up real-time listener for properties (existing logic)
+    const unsubscribeProperties = onSnapshot(propertiesRef, (snapshot) => {
+      console.log("Properties changed, updating charts...");
+
+      // Recalculate all your data here
+      const totalCount = snapshot.size;
+      setTotalProperties(totalCount);
+
+      // Process the snapshot for weekly data
+      const today = new Date();
+      const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+      const startOfWeek = new Date(today);
+
+      const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+      startOfWeek.setDate(today.getDate() - daysToSubtract);
+      startOfWeek.setHours(0, 0, 0, 0);
+
+      const weeklyData = {
+        total: [0, 0, 0, 0, 0, 0, 0],
+        sold: [0, 0, 0, 0, 0, 0, 0],
+        rent: [0, 0, 0, 0, 0, 0, 0],
+        sale: [0, 0, 0, 0, 0, 0, 0]
+      };
+
+      snapshot.docs.forEach((doc) => {
+        const property = doc.data();
+        let propertyDate;
+        if (property.createdAt) {
+          propertyDate = property.createdAt.toDate ? property.createdAt.toDate() : new Date(property.createdAt);
+        } else {
+          propertyDate = new Date();
+        }
+
+        if (propertyDate >= startOfWeek) {
+          const daysDiff = Math.floor((propertyDate - startOfWeek) / (24 * 60 * 60 * 1000));
+
+          if (daysDiff >= 0 && daysDiff < 7) {
+            weeklyData.total[daysDiff]++;
+            if (property.sold === true) {
+              weeklyData.sold[daysDiff]++;
+            }
+            if (property.propertyType === "rent") {
+              weeklyData.rent[daysDiff]++;
+            }
+            if (property.propertyType === "buy") {
+              weeklyData.sale[daysDiff]++;
+            }
+          }
+        }
+      });
+
+      setWeeklyPropertyData(weeklyData);
+
+      // Update other property counts from the same snapshot
+      setSoldProperties(snapshot.docs.filter(doc => doc.data().sold === true).length);
+      setRentProperties(snapshot.docs.filter(doc => doc.data().propertyType === "rent").length);
+      setSaleProperties(snapshot.docs.filter(doc => doc.data().propertyType === "buy").length);
+    });
+
+    // Set up real-time listener for users
+    const usersRef = collection(db, "users");
+    const unsubscribeUsers = onSnapshot(usersRef, (snapshot) => {
+      console.log("Users changed, updating list...");
+      const usersList = snapshot.docs.map(doc => {
+        const userData = doc.data();
+        return {
+          id: doc.id,
+          name: userData.name || 'Unknown User', // Default name if missing
+          profileImage: userData.profileImage || null, // Use null if missing
+        };
+      });
+      setUsers(usersList);
+    });
+
+    // Cleanup listeners on component unmount
+    return () => {
+      unsubscribeProperties();
+      unsubscribeUsers();
+    };
+  }, []); // Empty dependency array to run once on mount and clean up on unmount
   const containerStyle = {
     width: isSidebarVisible && window.innerWidth > 600 ? 'calc(100% - 240px)' : '100%',
     transition: 'width 0.3s',
@@ -114,211 +381,67 @@ function Home({ isSidebarVisible }) {
 
   return (
     <div className="content-wrapper" style={containerStyle}>
+      <style>
+        {`
+          .admin-image-placeholder {
+            width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+            border-radius: 50%;
+            background-color: #007bff; /* Example blue background */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px; /* Adjust font size as needed */
+            font-weight: bold;
+            margin-right: 10px; /* Space between image/placeholder and details */
+          }
+            .admin-image-placeholderi{
+             width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+            border-radius: 50%;
+            overflow:hidden;
+            }
+
+          .admin-li {
+            display: flex;
+            align-items: center; /* Vertically align items */
+            margin-bottom: 10px; /* Space between list items */
+            /* Add any other desired list item styles */
+          }
+
+          .admin-image {
+             width: 40px; /* Match placeholder size */
+             height: 40px; /* Match placeholder size */
+             border-radius: 50% !important;
+             margin-right: 10px; /* Space between image and details */
+          }
+
+          .adminac-details {
+            flex-grow: 1; /* Allows details to take up remaining space */
+            /* Add any other desired details container styles */
+          }
+
+           .admin-name {
+            margin: 0; /* Remove default paragraph margin */
+            font-weight: bold;
+           }
+
+           .activaty-text {
+             margin: 0; /* Remove default paragraph margin */
+             font-size: 0.9em;
+             color: #666; /* Example muted color */
+           }
+        `}
+      </style>
       <section className="dashboard-top-sec">
         <div className="container-fluid">
-          {/* <div className="row">
-            <div className="col-lg-8">
-              <div className="bg-white top-chart-earn py-3">
-                <div className="row">
-                  <div className="col-sm-4 my-2 pe-0">
-                    <div className="last-month">
-                      <h5>Dashboard</h5>
-                      <p>Overview of Latest Month</p>
-
-                      <div className="earn">
-                        <h2>3367.98</h2>
-                        <p>Current Month Sales</p>
-                      </div>
-                      <div className="sale mb-5">
-                        <h2>95</h2>
-                        <p>Current Month Sales</p>
-                      </div>
-                      <a href="#" className="di-btn purple-gradient">Last Month Summary</a>
-                    </div>
-                  </div>
-
-                  <div className="col-sm-8 my-2 ps-0">
-                    <div className="classic-tabs">
-                      <div className="tabs-wrapper">
-                        <ul className="nav nav-pills chart-header-tab mb-3" id="pills-tab" role="tablist">
-                          <li className="nav-item">
-                            <a href="#" className={toggle === 1 ? 'nav-link chart-nav active' : 'nav-link chart-nav '} onClick={() => toggletab(1)} id="pills-home-tab" data-bs-toggle="pill"
-                              data-bs-target="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Week</a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="#" className={toggle === 2 ? 'nav-link chart-nav active' : 'nav-link chart-nav '} onClick={() => toggletab(2)} id="pills-profile-tab" data-bs-toggle="pill"
-                              data-bs-target="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Month</a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="#"
-                              className={toggle === 3 ? 'nav-link chart-nav active' : 'nav-link chart-nav '} onClick={() => toggletab(3)} id="pills-contact-tab" data-bs-toggle="pill"
-                              data-bs-target="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Years</a>
-                          </li>
-                        </ul>
-                        <div className="tab-content" id="pills-tabContent">
-                          <div
-                            className={toggle === 1 ? 'tab-pane fade show active' : 'tab-pane fade show  '}
-                            id="pills-home" role="tabpanel"
-                            aria-labelledby="pills-home-tab">
-                            <div className="widget-content">
-                              <div id="weekly-chart">
-                                <Bar
-                                  data={{
-                                    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-                                    datasets: [
-                                      {
-                                        borderRadius: 10,
-                                        backgroundColor: "#fc8edf",
-                                        label: "Direct",
-                                        data: [58, 44, 55, 57, 56, 61, 58]
-                                      },
-                                      {
-                                        borderRadius: 10,
-                                        backgroundColor: "rgb(231, 28, 62)",
-                                        label: 'Organic',
-                                        data: [91, 76, 85, 101, 98, 87, 105]
-                                      }
-
-                                    ]
-                                  }}
-                                /></div>
-                            </div>
-                          </div>
-                          <div className={toggle === 2 ? 'tab-pane fade show active' : 'tab-pane fade show  '} id="pills-profile" role="tabpanel"
-                            aria-labelledby="pills-profile-tab">
-                            <div className="widget-content">
-                              <div id="monthly-chart">
-                                <Bar
-                                  data={{
-                                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                                    datasets: [
-                                      {
-                                        borderRadius: 10,
-                                        backgroundColor: "#fc8edf",
-
-                                        data: [58, 44, 55, 57, 56, 61, 58, 59, 66, 76, 96, 56]
-                                        , label: "Direct",
-                                      },
-                                      {
-                                        borderRadius: 10,
-                                        backgroundColor: "rgb(231, 28, 62)",
-                                        data: [91, 76, 85, 101, 98, 87, 105, 56, 86, 76, 88, 107]
-                                        , label: 'Organic',
-
-                                      }
-
-                                    ]
-                                  }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className={toggle === 3 ? 'tab-pane fade show active' : 'tab-pane fade show  '} id="pills-contact" role="tabpanel"
-                            aria-labelledby="pills-contact-tab">
-                            <div className="widget-content">
-                              <div id="yearly-chart"> <Bar
-                                data={{
-                                  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                                  datasets: [
-                                    {
-                                      borderRadius: 10,
-                                      backgroundColor: "#fc8edf",
-
-                                      data: [58, 44, 55, 57, 56, 61, 58, 59, 66, 76, 96, 56]
-                                      , label: "Direct",
-                                    },
-                                    {
-                                      borderRadius: 10,
-                                      backgroundColor: "rgb(231, 28, 62)",
-                                      data: [91, 76, 85, 101, 98, 87, 105, 56, 86, 76, 88, 107]
-                                      , label: 'Organic',
-
-                                    }
-
-                                  ]
-                                }} /></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="wre-sec">
-                  <div className="row">
-                    <div className="col-md-3 col-sm-3 col-6 my-1 bdr-cls">
-                      <div className="earn-view">
-                        <span className="fas fa-crown earn-icon wallet"></span>
-                        <div className="earn-view-text">
-                          <p className="naame-text">Wallet Balance</p>
-                          <h6 className="ballance-text">$1684.54</h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3 col-sm-3 col-6 my-1 bdr-cls">
-                      <div className="earn-view">
-                        <span className="fas fa-heart earn-icon referral"></span>
-                        <div className="earn-view-text">
-                          <p className="naame-text">Referral Earning</p>
-                          <h6 className="ballance-text">$1204.54</h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3 col-sm-3 col-6 my-1 bdr-cls">
-                      <div className="earn-view">
-                        <span className="fab fa-salesforce earn-icon sales"></span>
-                        <div className="earn-view-text">
-                          <p className="naame-text">Estimated Sales</p>
-                          <h6 className="ballance-text">$184.54</h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3 col-sm-3 col-6 my-1 bdr-cls">
-                      <div className="earn-view">
-                        <span className="fas fa-chart-line earn-icon earning"></span>
-                        <div className="earn-view-text">
-                          <p className="naame-text">Earning</p>
-                          <h6 className="ballance-text">$16984.54</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-4 ">
-              <div className="bg-white top-chart-earn">
-                <div className="traffice-tittle">
-                  <p>Traffice</p>
-                </div>
-                <div className="traffice">
-                  <div id="chart-2" className='align-items-center'> <Doughnut
-                    data={{
-                      labels: ["Organic", "Referal", "Direct"],
-                      colors: ["blue", "red", "rgb(210, 105, 50)"],
-                      datasets: [
-
-                        {
-                          data: [58, 91, 30]
-                          , label: 'Organic',
-
-                        }
-
-                      ]
-                    }} style={{ height: '300px' }} /></div>
-                </div>
-              </div>
-            </div>
-          </div> */}
+          
           <div className='row'>
-            <div className='col-lg-6 lg-width  '>
+            <div className={`col-lg-6 ${!isSidebarVisible ? 'col-lg-6' : 'lg-width'}`}>
               <div  className='bg-gray top-chart-earn '>
                   <div className='row '>
-                       <div className=' col-lg-4 bg-white'>
+                       <div className={`col-lg-4 bg-white ${!isSidebarVisible ? 'card-width' : 'col-lg-4'}`}>
                         <div>
                           <h5> No: of All Properties </h5>
                           <p>{totalProperties}</p>
@@ -326,7 +449,7 @@ function Home({ isSidebarVisible }) {
                        </div>
 
 
-                       <div className=' col-lg-4 bg-white'>
+                       <div className={`col-lg-4 bg-white ${!isSidebarVisible ? 'card-width' : 'col-lg-4'}`}>
                         <div>
                           <h5>  Sold Properties </h5>
                           <p>{soldProperties}</p>
@@ -335,14 +458,14 @@ function Home({ isSidebarVisible }) {
 
 
 
-                       <div className='col-lg-4 bg-white'>
+                       <div className={`col-lg-4 bg-white ${!isSidebarVisible ? 'card-width' : 'col-lg-4'}`}>
                         <div>
                           <h5>  Properties for Rent </h5>
                           <p>{rentProperties}</p>
                         </div>
                        </div>
 
-                       <div className='col-lg-4 bg-white'>
+                       <div className={`col-lg-4 bg-white ${!isSidebarVisible ? 'card-width' : 'col-lg-4'}`}>
                         <div>
                           <h5>  Properties for sale  </h5>
                           <p>{saleProperties}</p>
@@ -352,28 +475,51 @@ function Home({ isSidebarVisible }) {
               </div>
               
             </div>
-            <div className='col-lg-6 lg-width pt-4'>
+            <div className={`col-lg-6 ${!isSidebarVisible ? 'col-lg-6' : 'lg-width'} pt-4`}>
               
               <div className='bg-gray  top-chart-earn'>
               <div id="weekly-chart">
                                 <Bar
                                   data={{
-                                    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                                    labels: chartLabels,
                                     datasets: [
                                       {
                                         borderRadius: 10,
-                                        backgroundColor: "#fc8edf",
-                                        label: "Direct",
-                                        data: [58, 44, 55, 57, 56, 61, 58]
+                                        backgroundColor: "#1a73e8",
+                                        label: "Total Properties",
+                                        data: weeklyPropertyData.total
                                       },
                                       {
                                         borderRadius: 10,
-                                        backgroundColor: "rgb(231, 28, 62)",
-                                        label: 'Organic',
-                                        data: [91, 76, 85, 101, 98, 87, 105]
+                                        backgroundColor: "#4285f4",
+                                        label: 'Sold Properties',
+                                        data: weeklyPropertyData.sold
+                                      },
+                                      {
+                                        borderRadius: 10,
+                                        backgroundColor: "#5f9cea",
+                                        label: 'Rent Properties',
+                                        data: weeklyPropertyData.rent
+                                      },
+                                      {
+                                        borderRadius: 10,
+                                        backgroundColor: "#8ab4f8",
+                                        label: 'Sale Properties',
+                                        data: weeklyPropertyData.sale
                                       }
-
                                     ]
+                                  }}
+                                  options={{
+                                    responsive: true,
+                                    plugins: {
+                                      legend: {
+                                        position: 'top',
+                                      },
+                                      title: {
+                                        display: true,
+                                        text: 'Weekly Property Statistics'
+                                      }
+                                    }
                                   }}
                                 />
               </div>
@@ -384,88 +530,7 @@ function Home({ isSidebarVisible }) {
       </section>
 
       {/* ======== */}
-      <section>
-        <div className="sm-chart-sec my-5">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-6 my-2">
-                <div className="revinue revinue-one_hybrid">
-                  <div className="revinue-hedding">
-                    <div className="w-title">
-                      <div className="w-icon">
-                        <span className="fas fa-users"></span>
-                      </div>
-                      <div className="sm-chart-text">
-                        <p className="w-value">31.9k</p>
-                        <h5>Followers</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="revinue-content">
-                    <div id="hybrid_followers" style={{ height: '70px' }} >
-                      <Line data={data} options={options} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-6 my-2">
-                <div className="revinue page-one_hybrid">
-                  <div className="revinue-hedding">
-                    <div className="w-title">
-                      <div className="sm-chart-text">
-                        <p className="w-value">654K</p>
-                        <h5>Page views</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="revinue-content">
-                    <div id="hybrid_follower" style={{ height: '70px' }}>
-                      {/* Content for hybrid_follower */}
-                      <Line data={data} options={options} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-6 my-2">
-                <div className="revinue bonuce-one_hybrid">
-                  <div className="revinue-hedding">
-                    <div className="w-title">
-                      <div className="sm-chart-text">
-                        <p className="w-value">$432</p>
-                        <h5>Bounce Rate</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="revinue-content">
-                    <div id="hybrid_bounce" style={{ height: '70px' }}>
-                      {/* Content for hybrid_bounce */}
-                      <Line data={data} options={options} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-6 my-2">
-                <div className="revinue rv-status-one_hybrid">
-                  <div className="revinue-hedding">
-                    <div className="w-title">
-                      <div className="sm-chart-text">
-                        <p className="w-value">$765 <small>Jan 01 - Jan 19</small></p>
-                        <h5>Revenue Status</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="revinue-content">
-                    <div id="hybrid_status" style={{ height: '70px' }}>
-                      {/* Content for hybrid_status */}
-                      <Line data={data} options={options} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* ========================= */}
       <section>
@@ -476,62 +541,29 @@ function Home({ isSidebarVisible }) {
                 <div className="admin-list">
                   <p className="admin-ac-title">All Admin</p>
                   <ul className="admin-ul">
-                    <li className="admin-li">
-                      <img src="asset/images/download (1).jpeg" alt="" className="admin-image" />
-                      <div className="adminac-details">
-                        <div>
-                          <p className="admin-name">Helal Uddin</p>
-                          <p className="activaty-text">Active Now</p>
+                    {users.map(user => (
+                      <li key={user.id} className="admin-li">
+                        {user.profileImage ? (
+                          <div className='admin-image-placeholderi'> <img src={user.profileImage} alt={user.name} className="admin-image" /> </div>
+                        ) : (
+                          <div className="admin-image-placeholder">
+                            {user.name ? user.name.charAt(0).toUpperCase() : ''}
+                          </div>
+                        )}
+                        <div className="adminac-details">
+                          <div>
+                            <p className="admin-name">{user.name}</p>
+                            {/* Status removed as it's not in the current data schema */}
+                          </div>
+                          {/* Status indicator removed */}
                         </div>
-                        <div className="status bg-success"></div>
-                      </div>
-                    </li>
-
-                    <li className="admin-li">
-                      <img src="asset/images/download (2).jpeg" alt="" className="admin-image" />
-                      <div className="adminac-details">
-                        <div>
-                          <p className="admin-name">Rocky Islam</p>
-                          <p className="activaty-text">Active 15 min ago</p>
-                        </div>
-                        <div className="status bg-primary"></div>
-                      </div>
-                    </li>
-                    <li className="admin-li">
-                      <img src="asset/images/download (3).jpeg" alt="" className="admin-image" />
-                      <div className="adminac-details">
-                        <div>
-                          <p className="admin-name">Jewel Khan</p>
-                          <p className="activaty-text">Active 20 min ago</p>
-                        </div>
-                        <div className="status bg-warning"></div>
-                      </div>
-                    </li>
-                    <li className="admin-li">
-                      <img src="asset/images/download (4).jpeg" alt="" className="admin-image" />
-                      <div className="adminac-details">
-                        <div>
-                          <p className="admin-name">Afjal Sohel</p>
-                          <p className="activaty-text">Active 2 Days ago</p>
-                        </div>
-                        <div className="status bg-danger"></div>
-                      </div>
-                    </li>
-                    <li className="admin-li">
-                      <img src="asset/images/download (5).jpeg" alt="" className="admin-image" />
-                      <div className="adminac-details">
-                        <div>
-                          <p className="admin-name">Devigine</p>
-                          <p className="activaty-text">Active 12 min ago</p>
-                        </div>
-                        <div className="status bg-success"></div>
-                      </div>
-                    </li>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
-              <div className="col-md-8 col-sm-6">
+              {/* <div className="col-md-8 col-sm-6">
                 <div className="admin-lst">
                   <div className="order-list">
                     <p className="admin-ac-title">Order Status</p>
@@ -602,7 +634,7 @@ function Home({ isSidebarVisible }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -48,13 +48,14 @@ function Header({ toggleSidebar,isSidebarVisible }) {
                         </div>
                
             </div>
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center logoutbtn'>
              <div style={{ width: "200px" }}>
               <button onClick={handleLogout} className='btn'>Log Out</button> 
               </div> 
           </div>
           </div>
-          <nav className={isSidebarVisible ? 'nav-menu' : 'nav-menu active'}>
+          
+          <div className={isSidebarVisible ? 'nav-menu' : 'nav-menu active'}>
             <ul className='nav-menu-items'>
               
               {sidebarData.map((item, index) => {
@@ -65,12 +66,19 @@ function Header({ toggleSidebar,isSidebarVisible }) {
                       {item.icon}
                       <span>{ item.title}</span>
                     </Link>
+
+                  
                   </div>
                  )
                  
               })}
+                <div className='d-flex justify-content-center logoutbtn2'>
+             <div style={{ width: "200px" }}>
+              <button onClick={handleLogout} className='btn'>Log Out</button> 
+              </div> 
+          </div>
             </ul>
-            </nav>
+            </div>
             </header>
         </>
       );
