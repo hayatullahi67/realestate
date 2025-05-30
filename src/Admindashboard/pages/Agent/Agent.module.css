@@ -119,3 +119,59 @@ table { /* Keeping this but adding !important if needed for override */
 .modalContent button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .bggray {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .sectionsearch {
+        width: 95%;
+    }
+
+    .dflex {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sel {
+        width: 100% !important;
+    }
+
+    .agentTable {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .agentTable th,
+    .agentTable td {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bggray {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .sectionsearch {
+        width: 100%;
+    }
+
+    .agentTable {
+        font-size: 12px;
+    }
+
+    .agentTable th,
+    .agentTable td {
+        padding: 6px 8px;
+    }
+
+    .modalContent {
+        width: 95%;
+        padding: 15px;
+    }
+}
