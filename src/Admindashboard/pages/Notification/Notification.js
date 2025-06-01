@@ -206,7 +206,7 @@ const Notification = ({ isSidebarVisible }) => {
         width: '100%',
         transition: 'all 0.3s ease',
         marginLeft: isSidebarVisible ? '0px' : '0px',
-        paddingLeft: isSidebarVisible ? '20px' : '60px',
+        paddingLeft: isSidebarVisible ? '20px' : '20px',
         paddingRight: '20px',
         marginTop: '100px',
         boxSizing: 'border-box',

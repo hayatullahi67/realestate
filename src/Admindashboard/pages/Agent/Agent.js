@@ -1,349 +1,74 @@
-// import React, { useEffect, useState } from 'react';
-// import styles from './Agent.module.css';
-// import { collection, getDocs, query, where } from 'firebase/firestore';
-// import { db } from '../../../config';
-// import DataTable from 'react-data-table-component';
-
-// function Agent({ isSidebarVisible }) {
-//     const [agents, setAgents] = useState([]);
-//     const [totalUsers, setTotalUsers] = useState(0);
-//     const [newUsersThisMonth, setNewUsersThisMonth] = useState(0);
-//     const [isModalOpen, setIsModalOpen] = useState(false);
-//     const [selectedAgent, setSelectedAgent] = useState(null);
-//     const [searchTerm, setSearchTerm] = useState('');
-//     const [statusFilter, setStatusFilter] = useState('All Agents');
-//     const [filteredAgents, setFilteredAgents] = useState([]);
-
-//     useEffect(() => {
-//         const fetchAgents = async () => {
-//             try {
-//                 const agentsRef = collection(db, 'users');
-//                 const querySnapshot = await getDocs(agentsRef);
-//                 const agentList = querySnapshot.docs.map(doc => {
-//                     const data = doc.data();
-//                     return {
-//                         id: doc.id,
-//                         ...data,
-//                         createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'N/A',
-//                         propertyCount: 0,
-//                     };
-//                 });
-
-//                 const updatedAgents = await Promise.all(
-//                     agentList.map(async (agent) => {
-//                         const propertiesRef = collection(db, 'properties');
-//                         const propertyQuery = query(propertiesRef, where('user_id', '==', agent.id));
-//                         const propertySnapshot = await getDocs(propertyQuery);
-//                         return { ...agent, propertyCount: propertySnapshot.size };
-//                     })
-//                 );
-
-//                 setAgents(updatedAgents);
-//                 setFilteredAgents(updatedAgents);
-//                 setTotalUsers(agentList.length);
-
-//                 const currentMonth = new Date().getMonth();
-//                 const currentYear = new Date().getFullYear();
-
-//                 const newUsers = agentList.filter(agent => 
-//                     agent.createdAt && 
-//                     agent.createdAt.getMonth() === currentMonth &&
-//                     agent.createdAt.getFullYear() === currentYear
-//                 );
-//                 setNewUsersThisMonth(newUsers.length);
-//             } catch (error) {
-//                 console.error('Error fetching agents:', error);
-//             }
-//         };
-
-//         fetchAgents();
-//     }, []);
-
-//     useEffect(() => {
-//         let filtered = agents;
-
-//         if (searchTerm) {
-//             filtered = filtered.filter(agent =>
-//                 agent.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//                 agent.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//                 agent.phoneNumber?.includes(searchTerm)
-//             );
-//         }
-
-//         if (statusFilter !== 'All Agents') {
-//             filtered = filtered.filter(agent => agent.status === statusFilter);
-//         }
-
-//         setFilteredAgents(filtered);
-//     }, [searchTerm, statusFilter, agents]);
-
-//     const containerStyle = {
-//         width: isSidebarVisible ? 'calc(95% - 240px)' : '100%',
-//         transition: 'width 0.3s',
-//         marginLeft: isSidebarVisible ? '0px' : '0px',
-//         paddingLeft: isSidebarVisible ? '0px' : '60px',
-//         marginTop: '100px',
-//         '@media (max-width: 768px)': {
-//             marginLeft: '0px',
-//             paddingLeft: '15px',
-//             paddingRight: '15px',
-//             marginTop: '80px',
-//         },
-//         '@media (max-width: 480px)': {
-//             paddingLeft: '10px',
-//             paddingRight: '10px',
-//             marginTop: '60px',
-//         }
-//     };
-
-//     const columns = [
-//         {
-//             name: 'Name',
-//             selector: row => row.name,
-//             sortable: true,
-//             minWidth: '150px',
-//             wrap: true,
-//         },
-//         {
-//             name: 'Email',
-//             selector: row => row.email,
-//             sortable: true,
-//             minWidth: '200px',
-//             wrap: true,
-//             omit: window.innerWidth < 768,
-//         },
-//         {
-//             name: 'Phone',
-//             selector: row => row.phoneNumber,
-//             sortable: false,
-//             minWidth: '130px',
-//             wrap: true,
-//             omit: window.innerWidth < 640,
-//         },
-//         {
-//             name: 'Properties',
-//             selector: row => row.propertyCount,
-//             sortable: true,
-//             minWidth: '100px',
-//             center: true,
-//         },
-//         {
-//             name: 'Status',
-//             selector: row => row.status,
-//             sortable: true,
-//             minWidth: '100px',
-//             cell: row => (
-//                 <span className={`px-2 py-1 rounded-pill text-white ${row.status === 'Active' ? 'bg-success' : row.status === 'Inactive' ? 'bg-danger' : 'bg-secondary'}`}>
-//                     {row.status || 'N/A'}
-//                 </span>
-//             ),
-//         },
-//         {
-//             name: 'Join Date',
-//             selector: row => row.createdAt,
-//             sortable: true,
-//             minWidth: '120px',
-//             omit: window.innerWidth < 480,
-//         },
-//     ];
-
-//     const customStyles = {
-//         headCells: {
-//             style: {
-//                 backgroundColor: '#007bff',
-//                 color: 'white',
-//                 fontWeight: 'bold',
-//                 textTransform: 'uppercase',
-//                 fontSize: '12px',
-//                 padding: '12px 8px',
-//                 '@media (max-width: 768px)': {
-//                     fontSize: '11px',
-//                     padding: '10px 6px',
-//                 },
-//             },
-//         },
-//         cells: {
-//             style: {
-//                 fontSize: '13px',
-//                 padding: '12px 8px',
-//                 '@media (max-width: 768px)': {
-//                     fontSize: '12px',
-//                     padding: '10px 6px',
-//                 },
-//             },
-//         },
-//         rows: {
-//             highlightOnHoverStyle: {
-//                 backgroundColor: '#f2f2f2',
-//             },
-//             stripedStyle: {
-//                 backgroundColor: '#f9f9f9',
-//             },
-//         },
-//         responsiveWrapper: {
-//             style: {
-//                 minHeight: '200px',
-//             },
-//         },
-//     };
-
-//     const handleRowClicked = (row) => {
-//         setSelectedAgent(row);
-//         setIsModalOpen(true);
-//     };
-
-//     return (
-//         <div style={containerStyle}>
-//             <section className="">
-//                 <div>
-//                     <div className={`row gap-3 ${styles.bggray}`}>
-//                         <div className='col bg-white'>
-//                             <h5>Total Agent</h5>
-//                             <p>{totalUsers}</p>
-//                         </div>
-                        
-//                         <div className='col bg-white'>
-//                             <h5>Active Agents</h5>
-//                             <p>{agents.filter(agent => agent.status === 'Active').length}</p>
-//                         </div>
-
-//                         <div className='col bg-white'>
-//                             <h5>InActive Agents</h5>
-//                             <p>{agents.filter(agent => agent.status === 'Inactive').length}</p>
-//                         </div>
-
-//                         <div className='col bg-white'>
-//                             <h5>New This Month</h5>
-//                             <p>{newUsersThisMonth}</p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </section>
-
-//             <section className={`pt-5 ${styles.sectionsearch}`}>
-//                 <div className={`gap-3 align-items-center mb-3 ${styles.dflex}`}>
-//                     <div className="position-relative">
-//                         <input 
-//                             className="form-control ps-4" 
-//                             placeholder="Search agents..." 
-//                             style={{ width: "400px" }}
-//                             value={searchTerm}
-//                             onChange={(e) => setSearchTerm(e.target.value)}
-//                         />
-//                     </div>
-//                     <div className="w-auto">
-//                         <select 
-//                             className={`px-4 ${styles.sel}`} 
-//                             style={{ width: "150px" }}
-//                             value={statusFilter}
-//                             onChange={(e) => setStatusFilter(e.target.value)}
-//                         >
-//                             <option>All Agents</option>
-//                             <option>Active</option>
-//                             <option>Inactive</option>
-//                         </select>
-//                     </div>
-//                 </div>
-
-//                 <DataTable
-//                     columns={columns}
-//                     data={filteredAgents}
-//                     customStyles={customStyles}
-//                     pagination
-//                     paginationPerPage={10}
-//                     paginationRowsPerPageOptions={[5, 10, 20, 50]}
-//                     highlightOnHover
-//                     striped
-//                     responsive
-//                     dense
-//                     onRowClicked={handleRowClicked}
-//                 />
-//             </section>
-
-//             {isModalOpen && selectedAgent && (
-//                 <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
-//                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-//                         <h2>Agent Details</h2>
-//                         <p><strong>Name:</strong> {selectedAgent.name}</p>
-//                         <p><strong>Email:</strong> {selectedAgent.email}</p>
-//                         <p><strong>Phone Number:</strong> {selectedAgent.phoneNumber}</p>
-//                         <p><strong>Properties:</strong> {selectedAgent.propertyCount}</p>
-//                         <p><strong>Joined Date:</strong> {selectedAgent.createdAt}</p>
-//                         <button onClick={() => setIsModalOpen(false)}>Close</button>
-//                     </div>
-//                 </div>
-//             )}
-//         </div>
-//     );
-// }
-
-// export default Agent;
-
-
-
-import React, { useEffect, useState } from 'react';
-import styles from './Agent.module.css';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../config';
 import DataTable from 'react-data-table-component';
+import styles from './Agent.module.css';
 
-function Agent({ isSidebarVisible }) {
+const Agent = ({ isSidebarVisible }) => {
     const [agents, setAgents] = useState([]);
-    const [totalUsers, setTotalUsers] = useState(0);
-    const [newUsersThisMonth, setNewUsersThisMonth] = useState(0);
+    const [filteredAgents, setFilteredAgents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [statusFilter, setStatusFilter] = useState('All Agents');
-    const [filteredAgents, setFilteredAgents] = useState([]);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    // Track window width for responsive behavior
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const [statusFilter, setStatusFilter] = useState('All');
+    const [isLoading, setIsLoading] = useState(true);
+    const [totalProperties, setTotalProperties] = useState(0);
 
     useEffect(() => {
         const fetchAgents = async () => {
+            setIsLoading(true);
             try {
-                const agentsRef = collection(db, 'users');
-                const querySnapshot = await getDocs(agentsRef);
-                const agentList = querySnapshot.docs.map(doc => {
-                    const data = doc.data();
+                const agentsRef = collection(db, "users");
+                const propertiesRef = collection(db, "properties");
+                const [agentsSnapshot, propertiesSnapshot] = await Promise.all([
+                    getDocs(agentsRef),
+                    getDocs(propertiesRef)
+                ]);
+                
+                // Create a map of user_id to property count
+                const userPropertiesCount = {};
+                propertiesSnapshot.forEach(doc => {
+                    const propertyData = doc.data();
+                    const userId = propertyData.user_id;
+                    if (userId) {
+                        userPropertiesCount[userId] = (userPropertiesCount[userId] || 0) + 1;
+                    }
+                });
+                
+                const agentList = agentsSnapshot.docs.map(docSnap => {
+                    const data = docSnap.data();
+                    const joinDate = data.joinDate?.toDate
+                        ? data.joinDate.toDate().toLocaleDateString()
+                        : data.createdAt?.toDate
+                        ? data.createdAt.toDate().toLocaleDateString()
+                        : "N/A";
+
+                    // Get the actual count of properties for this user
+                    const userPropertyCount = userPropertiesCount[docSnap.id] || 0;
+
                     return {
-                        id: doc.id,
-                        ...data,
-                        createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'N/A',
-                        propertyCount: 0,
+                        id: docSnap.id,
+                        name: data.name || 'Unknown',
+                        email: data.email || 'N/A',
+                        phone: data.phoneNumber || 'N/A',
+                        status: data.status || 'Active',
+                        joinDate,
+                        properties: userPropertyCount, // Use the actual count from properties collection
+                        clients: data.clients || 0,
+                        address: data.address || 'N/A',
+                        profileImage: data.profileImage || '',
+                        bio: data.bio || 'No bio available',
+                        specialization: data.specialization || 'General Real Estate'
                     };
                 });
 
-                const updatedAgents = await Promise.all(
-                    agentList.map(async (agent) => {
-                        const propertiesRef = collection(db, 'properties');
-                        const propertyQuery = query(propertiesRef, where('user_id', '==', agent.id));
-                        const propertySnapshot = await getDocs(propertyQuery);
-                        return { ...agent, propertyCount: propertySnapshot.size };
-                    })
-                );
-
-                setAgents(updatedAgents);
-                setFilteredAgents(updatedAgents);
-                setTotalUsers(agentList.length);
-
-                const currentMonth = new Date().getMonth();
-                const currentYear = new Date().getFullYear();
-
-                const newUsers = agentList.filter(agent => 
-                    agent.createdAt && 
-                    agent.createdAt.getMonth() === currentMonth &&
-                    agent.createdAt.getFullYear() === currentYear
-                );
-                setNewUsersThisMonth(newUsers.length);
+                setAgents(agentList);
+                setFilteredAgents(agentList);
+                setTotalProperties(propertiesSnapshot.size);
             } catch (error) {
-                console.error('Error fetching agents:', error);
+                console.error("Error fetching agents:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -357,365 +82,331 @@ function Agent({ isSidebarVisible }) {
             filtered = filtered.filter(agent =>
                 agent.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 agent.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                agent.phoneNumber?.includes(searchTerm)
+                agent.phone?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                agent.specialization?.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
-        if (statusFilter !== 'All Agents') {
-            filtered = filtered.filter(agent => agent.status === statusFilter);
+        if (statusFilter !== 'All') {
+            filtered = filtered.filter(agent => 
+                agent.status === statusFilter
+            );
         }
 
         setFilteredAgents(filtered);
     }, [searchTerm, statusFilter, agents]);
 
-    // Dynamic container styles based on screen size and sidebar
-    const getContainerStyle = () => {
-        const baseStyle = {
-            transition: 'all 0.3s ease',
-            padding: '15px',
-            // minHeight: '100vh',
-            // marginTop: '500px'
-        };
-
-        if (windowWidth <= 480) {
-            return {
-                ...baseStyle,
-                width: '100%',
-                marginLeft: '0',
-                marginTop: '600px !important',
-                padding: '8px',
-            };
-        } else if (windowWidth <= 768) {
-            return {
-                ...baseStyle,
-                width: '100%',
-                marginLeft: '0',
-                marginTop: '80px',
-                padding: '12px',
-            };
-        } else if (windowWidth <= 1024) {
-            return {
-                ...baseStyle,
-                width: isSidebarVisible ? 'calc(100% - 250px)' : '100%',
-                marginLeft: isSidebarVisible ? '0px' : '0',
-                marginTop: '90px',
-                paddingLeft: isSidebarVisible ? '20px' : '70px',
-            };
-        } else {
-            return {
-                ...baseStyle,
-                width: isSidebarVisible ? 'calc(100% - 240px)' : '100%',
-                marginLeft: isSidebarVisible ? '0px' : '0',
-                marginTop: '100px',
-                paddingLeft: isSidebarVisible ? '20px' : '60px',
-            };
-        }
-    };
-
-    // Responsive column configuration
-    const getColumns = () => {
-        const baseColumns = [
-            {
-                name: 'Name',
-                selector: row => row.name || 'N/A',
-                sortable: true,
-                minWidth: windowWidth <= 480 ? '120px' : '150px',
-                maxWidth: windowWidth <= 768 ? '180px' : '200px',
-                wrap: true,
-                cell: row => (
-                    <div style={{ 
-                        fontSize: windowWidth <= 480 ? '12px' : '13px',
-                        fontWeight: '500',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        {row.name || 'N/A'}
-                    </div>
-                )
-            },
-            {
-                name: 'Properties',
-                selector: row => row.propertyCount,
-                sortable: true,
-                minWidth: '80px',
-                maxWidth: '100px',
-                center: true,
-                cell: row => (
-                    <span style={{ 
-                        backgroundColor: '#e3f2fd',
-                        color: '#1976d2',
-                        padding: '4px 8px',
-                        borderRadius: '12px',
-                        fontSize: windowWidth <= 480 ? '11px' : '12px',
-                        fontWeight: '600'
-                    }}>
-                        {row.propertyCount}
-                    </span>
-                )
-            },
-            {
-                name: 'Status',
-                selector: row => row.status,
-                sortable: true,
-                minWidth: windowWidth <= 480 ? '80px' : '100px',
-                cell: row => (
-                    <span style={{
-                        padding: '4px 8px',
-                        borderRadius: '12px',
-                        color: 'white',
-                        fontSize: windowWidth <= 480 ? '10px' : '11px',
-                        fontWeight: '600',
-                        backgroundColor: row.status === 'Active' ? '#4caf50' : 
-                                       row.status === 'Inactive' ? '#f44336' : '#9e9e9e'
-                    }}>
-                        {row.status || 'N/A'}
-                    </span>
-                ),
-            }
-        ];
-
-        // Add email column for larger screens
-        if (windowWidth > 640) {
-            baseColumns.splice(1, 0, {
-                name: 'Email',
-                selector: row => row.email || 'N/A',
-                sortable: true,
-                minWidth: windowWidth <= 768 ? '180px' : '220px',
-                wrap: true,
-                cell: row => (
-                    <div style={{ 
-                        fontSize: windowWidth <= 768 ? '11px' : '12px',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        {row.email || 'N/A'}
-                    </div>
-                )
-            });
-        }
-
-        // Add phone column for medium+ screens
-        if (windowWidth > 768) {
-            baseColumns.splice(-2, 0, {
-                name: 'Phone',
-                selector: row => row.phoneNumber || 'N/A',
-                sortable: false,
-                minWidth: '130px',
-                wrap: true,
-                cell: row => (
-                    <div style={{ fontSize: '12px' }}>
-                        {row.phoneNumber || 'N/A'}
-                    </div>
-                )
-            });
-        }
-
-        // Add join date for large screens
-        if (windowWidth > 1024) {
-            baseColumns.push({
-                name: 'Join Date',
-                selector: row => row.createdAt,
-                sortable: true,
-                minWidth: '120px',
-                cell: row => (
-                    <div style={{ fontSize: '12px' }}>
-                        {row.createdAt}
-                    </div>
-                )
-            });
-        }
-
-        return baseColumns;
-    };
-
-    const customStyles = {
-        headCells: {
-            style: {
-                backgroundColor: '#1976d2',
-                color: 'white',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                fontSize: windowWidth <= 480 ? '10px' : windowWidth <= 768 ? '11px' : '12px',
-                padding: windowWidth <= 480 ? '8px 4px' : windowWidth <= 768 ? '10px 6px' : '12px 8px',
-                minHeight: windowWidth <= 480 ? '40px' : '48px',
-            },
-        },
-        cells: {
-            style: {
-                fontSize: windowWidth <= 480 ? '11px' : windowWidth <= 768 ? '12px' : '13px',
-                padding: windowWidth <= 480 ? '8px 4px' : windowWidth <= 768 ? '10px 6px' : '12px 8px',
-                minHeight: windowWidth <= 480 ? '45px' : '52px',
-            },
-        },
-        rows: {
-            highlightOnHoverStyle: {
-                backgroundColor: '#f5f5f5',
-                cursor: 'pointer',
-            },
-            stripedStyle: {
-                backgroundColor: '#fafafa',
-            },
-        },
-        pagination: {
-            style: {
-                fontSize: windowWidth <= 480 ? '12px' : '14px',
-                padding: windowWidth <= 480 ? '8px' : '12px',
-            },
-        },
-        responsiveWrapper: {
-            style: {
-                minHeight: '200px',
-                overflowX: 'auto',
-            },
-        },
-    };
-
-    const handleRowClicked = (row) => {
+    const handleRowClick = (row) => {
         setSelectedAgent(row);
         setIsModalOpen(true);
     };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedAgent(null);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleStatusFilterChange = (e) => {
+        setStatusFilter(e.target.value);
+    };
+
+    const columns = [
+        {
+            name: 'Name',
+            selector: row => row.name,
+            sortable: true,
+            minWidth: '200px',
+            wrap: true,
+        },
+        {
+            name: 'Email',
+            selector: row => row.email,
+            sortable: true,
+            minWidth: '250px',
+            wrap: true,
+            omit: window.innerWidth < 768,
+        },
+        {
+            name: 'Phone',
+            selector: row => row.phone,
+            sortable: true,
+            minWidth: '150px',
+            wrap: true,
+            omit: window.innerWidth < 640,
+        },
+        {
+            name: 'Properties',
+            selector: row => row.properties,
+            sortable: true,
+            minWidth: '100px',
+            right: true,
+            omit: window.innerWidth < 480,
+        },
+        {
+            name: 'Status',
+            selector: row => row.status,
+            sortable: true,
+            minWidth: '100px',
+            cell: row => (
+                <span className={`${styles.statusBadge} ${
+                    row.status === 'Active' ? styles.statusActive : styles.statusInactive
+                }`}>
+                    {row.status}
+                </span>
+            ),
+        },
+        {
+            name: 'Join Date',
+            selector: row => row.joinDate,
+            sortable: true,
+            minWidth: '120px',
+            omit: window.innerWidth < 992,
+        },
+    ];
+
+    const customStyles = {
+        headRow: {
+            style: {
+                backgroundColor: '#007bff',
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: '14px',
+                minHeight: '50px',
+            },
+        },
+        headCells: {
+            style: {
+                paddingLeft: '12px',
+                paddingRight: '12px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+            },
+        },
+        rows: {
+            style: {
+                minHeight: '60px',
+                '&:nth-of-type(odd)': {
+                    backgroundColor: '#f8f9fa',
+                },
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+            },
+            highlightOnHoverStyle: {
+                backgroundColor: '#e3f2fd',
+                borderBottomColor: '#2196f3',
+                outline: '1px solid #2196f3',
+            },
+        },
+        cells: {
+            style: {
+                paddingLeft: '12px',
+                paddingRight: '12px',
+                fontSize: '13px',
+            },
+        },
+        pagination: {
+            style: {
+                fontSize: '13px',
+                minHeight: '56px',
+                backgroundColor: '#f8f9fa',
+                borderTop: '1px solid #dee2e6',
+            },
+        },
+    };
+
+    const containerStyle = {
+        width: '100%',
+        transition: 'all 0.3s ease',
+        marginLeft: isSidebarVisible ? '0px' : '0px',
+        paddingLeft: isSidebarVisible ? '20px' : '20px',
+        paddingRight: '20px',
+        marginTop: '100px',
+        boxSizing: 'border-box',
+    };
+
+    const stats = {
+        total: agents.length,
+        active: agents.filter(a => a.status === 'Active').length,
+        inactive: agents.filter(a => a.status === 'Inactive').length,
+        totalProperties: totalProperties,
+    };
+
+    if (isLoading) {
+        return (
+            <div style={containerStyle} className={styles.loadingContainer}>
+                <div className={styles.spinner}></div>
+                <p>Loading agents...</p>
+            </div>
+        );
+    }
+
     return (
-        <div style={getContainerStyle()}>
-            {/* Stats Cards Section */}
-            <section className={styles.statsSection}>
+        <div style={containerStyle} className={styles.responsiveContainer}>
+            {/* Header Section */}
+            <div className={styles.headerSection}>
+                <h2 className={styles.pageTitle}>Agents Dashboard</h2>
+                <p className={styles.pageSubtitle}>Manage and track all real estate agents</p>
+            </div>
+
+            {/* Stats Cards */}
+            <div className={styles.statsSection}>
                 <div className={styles.statsGrid}>
                     <div className={styles.statCard}>
-                        <div className={styles.statIcon}>👥</div>
-                        <div className={styles.statContent}>
-                            <h3>{totalUsers}</h3>
-                            <p>Total Agents</p>
-                        </div>
+                        <div className={styles.statValue}>{stats.total}</div>
+                        <div className={styles.statLabel}>Total Agents</div>
                     </div>
-                    
                     <div className={styles.statCard}>
-                        <div className={styles.statIcon} style={{backgroundColor: '#4caf50'}}>✓</div>
-                        <div className={styles.statContent}>
-                            <h3>{agents.filter(agent => agent.status === 'Active').length}</h3>
-                            <p>Active Agents</p>
-                        </div>
+                        <div className={styles.statValue}>{stats.active}</div>
+                        <div className={styles.statLabel}>Active</div>
                     </div>
-
                     <div className={styles.statCard}>
-                        <div className={styles.statIcon} style={{backgroundColor: '#f44336'}}>✗</div>
-                        <div className={styles.statContent}>
-                            <h3>{agents.filter(agent => agent.status === 'Inactive').length}</h3>
-                            <p>Inactive Agents</p>
-                        </div>
+                        <div className={styles.statValue}>{stats.inactive}</div>
+                        <div className={styles.statLabel}>Inactive</div>
                     </div>
-
                     <div className={styles.statCard}>
-                        <div className={styles.statIcon} style={{backgroundColor: '#ff9800'}}>📅</div>
-                        <div className={styles.statContent}>
-                            <h3>{newUsersThisMonth}</h3>
-                            <p>New This Month</p>
-                        </div>
+                        <div className={styles.statValue}>{stats.totalProperties}</div>
+                        <div className={styles.statLabel}>Total Properties</div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             {/* Search and Filter Section */}
-            <section className={styles.searchSection}>
+            <div className={styles.searchSection}>
                 <div className={styles.searchContainer}>
                     <div className={styles.searchInputWrapper}>
-                        <input 
+                        <input
+                            type="text"
                             className={styles.searchInput}
-                            placeholder="Search agents..." 
+                            placeholder="Search agents, email, phone, or specialization..."
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={handleSearchChange}
                         />
-                        <span className={styles.searchIcon}>🔍</span>
                     </div>
-                    
                     <div className={styles.filterWrapper}>
-                        <select 
+                        <select
                             className={styles.filterSelect}
                             value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
+                            onChange={handleStatusFilterChange}
                         >
-                            <option>All Agents</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
+                            <option value="All">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
                         </select>
                     </div>
                 </div>
+            </div>
 
-                {/* Data Table */}
-                <div className={styles.tableWrapper}>
-                    <DataTable
-                        columns={getColumns()}
-                        data={filteredAgents}
-                        customStyles={customStyles}
-                        pagination
-                        paginationPerPage={windowWidth <= 480 ? 5 : windowWidth <= 768 ? 8 : 10}
-                        paginationRowsPerPageOptions={windowWidth <= 480 ? [5, 10] : [5, 10, 20, 50]}
-                        highlightOnHover
-                        striped
-                        responsive
-                        dense={windowWidth <= 768}
-                        onRowClicked={handleRowClicked}
-                        noDataComponent={
-                            <div className={styles.noData}>
-                                <p>No agents found</p>
-                            </div>
-                        }
-                    />
-                </div>
-            </section>
+            {/* Data Table Section */}
+            <div className={styles.tableSection}>
+                <DataTable
+                    columns={columns}
+                    data={filteredAgents}
+                    pagination
+                    paginationPerPage={10}
+                    paginationRowsPerPageOptions={[5, 10, 20, 50]}
+                    highlightOnHover
+                    responsive
+                    customStyles={customStyles}
+                    onRowClicked={handleRowClick}
+                    noDataComponent={
+                        <div className={styles.noData}>
+                            <p>No agents found matching your criteria</p>
+                        </div>
+                    }
+                    progressPending={isLoading}
+                    progressComponent={
+                        <div className={styles.loadingTable}>
+                            <div className={styles.spinner}></div>
+                        </div>
+                    }
+                />
+            </div>
 
-            {/* Modal */}
+            {/* Agent Details Modal */}
             {isModalOpen && selectedAgent && (
-                <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+                <div className={styles.modalOverlay} onClick={closeModal}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        {/* Modal Header */}
                         <div className={styles.modalHeader}>
-                            <h2>Agent Details</h2>
-                            <button 
-                                className={styles.modalCloseX}
-                                onClick={() => setIsModalOpen(false)}
-                            >
-                                ×
-                            </button>
+                            <h2 className={styles.modalTitle}>{selectedAgent.name}</h2>
+                            <button className={styles.modalCloseBtn} onClick={closeModal}>×</button>
                         </div>
-                        
+
+                        {/* Modal Body */}
                         <div className={styles.modalBody}>
-                            <div className={styles.modalField}>
-                                <strong>Name:</strong>
-                                <span>{selectedAgent.name || 'N/A'}</span>
+                            {/* Profile Image */}
+                            {selectedAgent.profileImage && (
+                                <div className={styles.mainImageContainer}>
+                                    <img 
+                                        src={selectedAgent.profileImage} 
+                                        alt={selectedAgent.name} 
+                                        className={styles.mainImage}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Agent Details Grid */}
+                            <div className={styles.detailsGrid}>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Name:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.name}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Status:</span>
+                                    <span className={`${styles.statusBadge} ${
+                                        selectedAgent.status === 'Active' ? styles.statusActive : styles.statusInactive
+                                    }`}>
+                                        {selectedAgent.status}
+                                    </span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Email:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.email}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Phone:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.phone}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Properties:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.properties}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Clients:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.clients}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Specialization:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.specialization}</span>
+                                </div>
+                                <div className={styles.detailItem}>
+                                    <span className={styles.detailLabel}>Join Date:</span>
+                                    <span className={styles.detailValue}>{selectedAgent.joinDate}</span>
+                                </div>
                             </div>
-                            <div className={styles.modalField}>
-                                <strong>Email:</strong>
-                                <span>{selectedAgent.email || 'N/A'}</span>
+
+                            {/* Bio Section */}
+                            <div className={styles.descriptionSection}>
+                                <h4 className={styles.sectionTitle}>Bio</h4>
+                                <p className={styles.description}>{selectedAgent.bio}</p>
                             </div>
-                            <div className={styles.modalField}>
-                                <strong>Phone:</strong>
-                                <span>{selectedAgent.phoneNumber || 'N/A'}</span>
-                            </div>
-                            <div className={styles.modalField}>
-                                <strong>Properties:</strong>
-                                <span>{selectedAgent.propertyCount}</span>
-                            </div>
-                            <div className={styles.modalField}>
-                                <strong>Status:</strong>
-                                <span className={`${styles.statusBadge} ${
-                                    selectedAgent.status === 'Active' ? styles.active : 
-                                    selectedAgent.status === 'Inactive' ? styles.inactive : styles.unknown
-                                }`}>
-                                    {selectedAgent.status || 'N/A'}
-                                </span>
-                            </div>
-                            <div className={styles.modalField}>
-                                <strong>Join Date:</strong>
-                                <span>{selectedAgent.createdAt}</span>
-                            </div>
+
+                            {/* Address Section */}
+                            {selectedAgent.address && selectedAgent.address !== 'N/A' && (
+                                <div className={styles.descriptionSection}>
+                                    <h4 className={styles.sectionTitle}>Address</h4>
+                                    <p className={styles.description}>{selectedAgent.address}</p>
+                                </div>
+                            )}
                         </div>
-                        
+
+                        {/* Modal Footer */}
                         <div className={styles.modalFooter}>
-                            <button 
-                                className={styles.modalCloseBtn}
-                                onClick={() => setIsModalOpen(false)}
-                            >
+                            <button className={styles.modalActionBtn} onClick={closeModal}>
                                 Close
                             </button>
                         </div>
@@ -724,6 +415,6 @@ function Agent({ isSidebarVisible }) {
             )}
         </div>
     );
-}
+};
 
 export default Agent;
